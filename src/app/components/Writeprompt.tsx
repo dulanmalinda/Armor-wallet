@@ -31,7 +31,7 @@ const Writeprompt = ({walletAddress,fetchPrompts} : WritepromptProps) => {
 
     return (
         <div className="items-center">
-          <div className="mr-2 mb-2 hidden sm:block">Write a Prompt</div>
+          <div className="mr-2 mb-2 hideOnMobile">Write a Prompt</div>
           <button onClick={togglePopUp} className="bg-[#a7ff4b] hover:bg-[#A5EE59] text-white font-bold py-2 px-4 rounded pl-20 pr-20  disabled:bg-[#ebffd2]" disabled={!walletAddress || promptSubmittedOnce}>
             <span> + </span>
           </button>

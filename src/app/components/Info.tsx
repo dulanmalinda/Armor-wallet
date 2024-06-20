@@ -3,8 +3,8 @@ import React from 'react'
 const Info = () => {
   return (
     <>
-              <div className="flex flex-col sm:flex-row items-start p-4 max-w-full sm:max-w-3xl">
-          <div className="flex-shrink-0 flex flex-col sm:flex-row items-start">
+        <div className="flex flex-col sm:flex-row items-start p-4 max-w-full sm:max-w-3xl">
+          <div className="flex-shrink-0 flex flex-col sm:flex-row items-start hideOnMobile">
               <div className="flex items-center">
               <div className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" >
                   
@@ -17,7 +17,6 @@ const Info = () => {
               </span>
               </div>
               <div
-              className="hidden sm:block"
               style={{
                   width: '3px',
                   height: '10vh',
@@ -37,7 +36,7 @@ const Info = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row items-start p-4 max-w-full sm:max-w-3xl">
-          <div className="flex-shrink-0 flex flex-col sm:flex-row items-start">
+          <div className="flex-shrink-0 flex flex-col sm:flex-row items-start hideOnMobile">
               <div className="flex items-center">
               <div className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" >
                   
@@ -50,7 +49,6 @@ const Info = () => {
               </span>
               </div>
               <div
-              className="hidden sm:block"
               style={{
                   width: '3px',
                   height: '14vh',

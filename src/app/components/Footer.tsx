@@ -10,9 +10,9 @@ import footerLogoFull from '../assets/footer/footer_logo_full.svg'
 
 const Footer = () => {
   return (
-    <footer className="bg-white py-6 md:py-6">
-      <div className="container mx-auto hidden md:flex justify-between items-start">
-        <div className="flex items-start">
+    <footer className="bg-white py-6">
+      <div className="container mx-auto flex justify-between items-start hideOnMobile">
+        <div className="flex items-start ml-6">
           <Image src={footerLogo} alt="Logo" width={40} height={40} className='mr-12'/>
           <p className="text-gray-600 mr-1">Links</p>
 
@@ -33,7 +33,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="text-right flex">
+        <div className="text-right flex mr-6">
           <p className="text-gray-600 mr-1">Socials</p>
 
           <div style={{
@@ -54,7 +54,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex flex-col items-center justify-center mt-12 md:mt-0">
-        <Image src={footerLogoFull} alt="Logo" width={120} height={120} className='mb-6 md:hidden'/>
+        <Image src={footerLogoFull} alt="Logo" width={120} height={120} className='mb-6 hideOnDesktop'/>
         <div className="text-center text-gray-500 text-sm">
           ©2023-2024 0xArmor Ltd. All rights reserved.
         </div>

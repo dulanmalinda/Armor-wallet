@@ -11,7 +11,7 @@
 }
 
 .mainNav.open {
-  max-height: 500px; /* Adjust as needed for content */
+  max-height: 600px; /* Adjust as needed for content */
   opacity: 1;
   transform: translateY(0);
 }
@@ -26,7 +26,7 @@
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 912px) {
   .mainNav {
     display: flex;
     flex-direction: column;
@@ -38,6 +38,7 @@
     text-align: left;
     padding: 0;
     margin-top: 40px;
+    padding-bottom: 20px;
   }
 
   .socialLinks {
@@ -54,7 +55,7 @@
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 913px) {
   .mainNav {
     display: flex;
     flex-direction: row;
