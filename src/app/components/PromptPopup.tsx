@@ -2,7 +2,7 @@
 
 import {SetStateAction, useEffect, useState } from 'react';
 import { useActiveAccount } from "thirdweb/react";
-
+import ClipLoader from "react-spinners/ClipLoader";
 
 interface PopupProps {
     isOpen: boolean;
@@ -17,6 +17,8 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts}:PopupProps) 
   const [upVotes, setupVotes] = useState<number>(0);
   const [downVotes, setdownVotes] = useState<number>(0);
   const [signature, setSignature] = useState<String>("");
+  const [loading, setLoading] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const activeAccount = useActiveAccount();
 
@@ -32,7 +34,7 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts}:PopupProps) 
     const data = await res.json();
     console.log(data);
     setPromptInput('');
-    closePopUp();
+    setPopUpVisibleState(false);
     fetchPrompts();
   }
   
@@ -41,6 +43,8 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts}:PopupProps) 
       alert('Please enter a message to sign.');
       return;
     }
+
+    setLoading(true);
 
     try {
       const signature = await activeAccount?.signMessage({message:"confirm prompt"});
@@ -51,8 +55,11 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts}:PopupProps) 
         setSignature(signature?.toString());
       }
 
+      setLoading(false);
+
     } catch (error) {
       console.error("Error signing message:", error);
+      setLoading(false);
     }
   };  
 
@@ -62,23 +69,42 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts}:PopupProps) 
       }
   }, [signature]);
 
-  const handleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
-    setPromptInput(event.target.value);
+  useEffect(() => {
+    if (isOpen) {
+        setIsVisible(true);
+    }
+}, [isOpen]);
+
+  const handleChange = (e: { target: { value: any; }; }) => {
+    const input = e.target.value;
+    const characterLimit = 1000; 
+
+    if (input.length <= characterLimit) {
+      setPromptInput(input);
+    } else {
+      // alert(`Word limit of ${wordLimit} exceeded`);
+    }
   };
 
-  const closePopUp = () =>{
-    setPromptInput('');
-    onClose();
+  const setPopUpVisibleState = (isopen:boolean) =>{
+    if(!isopen)
+    {
+      setPromptInput('');
+      setIsVisible(false);
+    }
   }
 
   return (
+    <>
     <div
-      className={`${
-        isOpen ? 'block' : 'hidden'
-      } fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity z-50`}
-    >
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="bg-white p-8 rounded-lg ">
+        className={`
+          fixed inset-0 bg-gray-500 bg-opacity-40 backdrop-blur-lg transition-opacity z-1 transition-opacity duration-300 
+          ${isVisible ? 'visible' : 'invisible'} ${isOpen ? 'opacity-100' : 'opacity-0'}`}
+      >
+    </div>
+
+    <div className={`${isVisible ? 'visible' : 'invisible'} absolute inset-0 flex items-center justify-center transition-transform transition-opacity duration-300 ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-0'} z-2`} onTransitionEnd={() => setPopUpVisibleState(isOpen)}>
+        <div className={`bg-white p-8 rounded-lg`}>
           <h2 className="text-lg font-bold mb-4">Input Field</h2>
           
           <input
@@ -87,27 +113,39 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts}:PopupProps) 
             placeholder='Type Here'
             value={promptInput}
             onChange={handleChange}
-            />
+          />
 
           <span className=''>
             <button
-                className="mt-4 mr-4 bg-[#a7ff4b] hover:bg-[#A5EE59] text-white px-4 py-2 rounded "
-                onClick={handleSignMessage}
+              className="mt-4 mr-4 bg-[#a7ff4b] hover:bg-[#A5EE59] text-white px-4 py-2 rounded disabled:bg-[#CFFF94]"
+              onClick={handleSignMessage}
+              style={{ width: '200px' }}
+              disabled={loading}
             >
-                Submit Your Prompt
+              {loading ? (
+                <ClipLoader
+                  color={"#ffffff"}
+                  loading={loading}
+                  size={15}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              ) : (
+                'Submit Your Prompt'
+              )}
             </button>
 
             <button
-                className="mt-4 bg-red-500 hover:bg-red-800 text-white px-4 py-2 rounded "
-                onClick={closePopUp}
+              className="mt-4 bg-red-500 hover:bg-red-800 text-white px-4 py-2 rounded"
+              onClick={onClose}
             >
-                Close
+              Close
             </button>
           </span>
         </div>
       </div>
-
-    </div>
+    
+    </>
   )
 }
 
