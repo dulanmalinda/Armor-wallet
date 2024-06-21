@@ -71,7 +71,8 @@ const Page = () => {
                             userWalletAddress={walletAddress}
                             prompt={prompt.prompt}
                             id={prompt._id}
-                            voteCount={prompt.upVoteCount}
+                            upVoteCount={prompt.upVoteCount}
+                            downVoteCount={prompt.downVoteCount}
                             fetchPrompts={fetchPrompts}
                             didUserVoted={didUserVoted(prompt.votedWallets)}
                             baseApiURL={apiURL}
@@ -119,7 +120,8 @@ const Page = () => {
                               userWalletAddress={walletAddress}
                               prompt={prompt.prompt}
                               id={prompt._id}
-                              voteCount={prompt.upVoteCount}
+                              upVoteCount={prompt.upVoteCount}
+                              downVoteCount={prompt.downVoteCount}
                               fetchPrompts={fetchPrompts}
                               didUserVoted={didUserVoted(prompt.votedWallets)}
                               baseApiURL = {apiURL}

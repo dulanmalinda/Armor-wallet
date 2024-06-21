@@ -12,7 +12,10 @@ const Info = () => {
               <div className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" >
                   
               </div>
-              <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '50px', display: 'inline-block', textAlign: 'right' }}>
+              <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
+                  
+              </span>
+              <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
                   01
               </span>
               </div>
@@ -44,7 +47,10 @@ const Info = () => {
               <div className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" >
                   
               </div>
-              <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '50px', display: 'inline-block', textAlign: 'right' }}>
+              <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
+                  
+              </span>
+              <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
                   02
               </span>
               </div>

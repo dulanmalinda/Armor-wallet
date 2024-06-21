@@ -9,13 +9,14 @@ interface PromptsProps {
     userWalletAddress :string | null;
     prompt: string | null;
     id: string | null;
-    voteCount: number | null;
+    upVoteCount: number | null;
+    downVoteCount: number | null;
     didUserVoted:boolean
     fetchPrompts:() =>void;
     baseApiURL: string;
   }
 
-const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,voteCount,didUserVoted,fetchPrompts,baseApiURL} : PromptsProps) => {
+const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,downVoteCount,didUserVoted,fetchPrompts,baseApiURL} : PromptsProps) => {
 
     const [upVoteSignature, setUpVoteSignature] = useState<String>("");
     const [downVoteSignature, setDownVoteSignature] = useState<String>("");
@@ -135,8 +136,11 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,voteCount,did
             <div className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" onClick={signDownVote}>
                 <Image src={downArrow} alt="Down arrow" layout="responsive" />
             </div>
-            <span className="font-bold mx-2 sm:mx-0 sm:ml-2" style={{ width: '50px', display: 'inline-block', textAlign: 'right' }}>
-                {voteCount}
+            <span className="font-bold mx-2 sm:mx-0 sm:ml-2" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
+                {upVoteCount}
+            </span>
+            <span className="font-bold mx-2 sm:mx-0 sm:ml-2" style={{ width: '40px', display: 'inline-block', textAlign: 'right',color:"#fe195d" }}>
+                {downVoteCount}
             </span>
             </div>
             <div
