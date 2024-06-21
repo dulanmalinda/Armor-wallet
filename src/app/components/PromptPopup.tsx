@@ -35,6 +35,7 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL}:P
     const data = await res.json();
     console.log(data);
     onClose();
+    setLoading(false);
     fetchPrompts();
   }
   
@@ -91,6 +92,7 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL}:P
     {
       setPromptInput('');
       setIsVisible(false);
+      setLoading(false);
     }
   }
 
