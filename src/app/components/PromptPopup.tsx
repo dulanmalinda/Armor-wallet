@@ -33,7 +33,6 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL}:P
     });
 
     const data = await res.json();
-    console.log(data);
     onClose();
     setLoading(false);
     fetchPrompts();
@@ -55,8 +54,6 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL}:P
       {
         setSignature(signature?.toString());
       }
-
-      setLoading(false);
 
     } catch (error) {
       console.error("Error signing message:", error);
