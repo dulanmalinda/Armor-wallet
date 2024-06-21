@@ -11,7 +11,7 @@ import { createThirdwebClient } from "thirdweb";
 
 import { useEffect, useState } from 'react';
 
-const apiURL = "https://armor-vote-backend-giarkh0sf-dulanmalindas-projects.vercel.app/api/";
+const apiURL = "https://armor-vote-backend.vercel.app/api/";
 
 const Page = () => {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
