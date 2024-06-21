@@ -12,9 +12,10 @@ interface PromptsProps {
     voteCount: number | null;
     didUserVoted:boolean
     fetchPrompts:() =>void;
+    baseApiURL: string;
   }
 
-const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,voteCount,didUserVoted,fetchPrompts} : PromptsProps) => {
+const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,voteCount,didUserVoted,fetchPrompts,baseApiURL} : PromptsProps) => {
 
     const [upVoteSignature, setUpVoteSignature] = useState<String>("");
     const [downVoteSignature, setDownVoteSignature] = useState<String>("");
@@ -47,7 +48,7 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,voteCount,did
     const onVoteSigned = async (isUpVote:boolean) => {
         if(isUpVote)
         {
-            const res = await fetch(`http://localhost:5000/api/prompts/${id}/vote`, {
+            const res = await fetch(`${baseApiURL}prompts/${id}/vote`, {
                 method: 'PATCH',
                 headers: {
                   'Content-Type': 'application/json',
@@ -60,7 +61,7 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,voteCount,did
         }
         else
         {
-            const res = await fetch(`http://localhost:5000/api/prompts/${id}/vote`, {
+            const res = await fetch(`${baseApiURL}prompts/${id}/vote`, {
                 method: 'PATCH',
                 headers: {
                   'Content-Type': 'application/json',

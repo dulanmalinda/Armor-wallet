@@ -11,7 +11,9 @@ import { createThirdwebClient } from "thirdweb";
 
 import { useEffect, useState } from 'react';
 
-const page = () => {
+const apiURL = "http://localhost:5000/api/";
+
+const Page = () => {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [prompts, setPrompts] = useState<any[]>([]);
 
@@ -27,7 +29,7 @@ const page = () => {
   });
   
   const fetchPrompts = () => {
-    fetch('http://localhost:5000/api/getPrompts')
+    fetch(`${apiURL}getPrompts`)
       .then((response) => response.json())
       .then((data) => {
         setPrompts(data);
@@ -72,6 +74,7 @@ const page = () => {
                             voteCount={prompt.upVoteCount}
                             fetchPrompts={fetchPrompts}
                             didUserVoted={didUserVoted(prompt.votedWallets)}
+                            baseApiURL={apiURL}
                         />
                     ))}
               </div>    
@@ -79,7 +82,7 @@ const page = () => {
 
         </div>
         <div className="flex-custom-1 flex justify-center" style={{marginTop : "9vh"}}>
-          <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} />
+          <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} bsaeApiURL={apiURL} />
         </div>
       </div>
 
@@ -104,7 +107,7 @@ const page = () => {
               <Walletconnect setWalletAddress={setWalletAddress} />
             </div>
             <div className="flex items-center justify-center">
-              <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} />
+              <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} bsaeApiURL={apiURL}/>
             </div>
           </div>
           <div className="">
@@ -119,6 +122,7 @@ const page = () => {
                               voteCount={prompt.upVoteCount}
                               fetchPrompts={fetchPrompts}
                               didUserVoted={didUserVoted(prompt.votedWallets)}
+                              baseApiURL = {apiURL}
                           />
                       ))}
                 </div>    
@@ -131,4 +135,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

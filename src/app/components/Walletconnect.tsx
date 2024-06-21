@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { ConnectButton, darkTheme } from 'thirdweb/react';
 import { createWallet} from "thirdweb/wallets";
 import { createThirdwebClient,defineChain } from "thirdweb";
-
+import { useActiveAccount } from "thirdweb/react";
 
 interface WalletconnectProps {
   setWalletAddress: (newValue: string | null) => void;
@@ -14,6 +14,8 @@ const Walletconnect = ({ setWalletAddress}: WalletconnectProps) => {
   const [connectedChainId, setConnectedChainId] = useState(0);
 
   const connectedChain = defineChain(connectedChainId);
+
+  const activeAccount = useActiveAccount();
 
   const client = createThirdwebClient({
     clientId: "906393bcf3a603cdaf81ad7dbf23fffc",
@@ -43,6 +45,13 @@ const Walletconnect = ({ setWalletAddress}: WalletconnectProps) => {
       }
       return text;
   };
+
+  
+  useEffect(() => {
+    if(activeAccount?.address){
+      setWalletAddress(activeAccount?.address);
+    }
+}, [activeAccount?.address]);
 
   return (
     <div className="items-center">

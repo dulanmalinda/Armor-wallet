@@ -9,9 +9,10 @@ interface PopupProps {
     onClose: () => void;
     walletAddress : string | null;
     fetchPrompts:() =>void;
+    baseApiURL:string;
   }
 
-const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts}:PopupProps) => {
+const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL}:PopupProps) => {
 
   const [promptInput, setPromptInput] = useState<string>("");
   const [upVotes, setupVotes] = useState<number>(0);
@@ -23,7 +24,7 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts}:PopupProps) 
   const activeAccount = useActiveAccount();
 
   const onSubmit = async () => {
-    const res = await fetch('http://localhost:5000/api/createPrompt', {
+    const res = await fetch(`${baseApiURL}createPrompt`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -33,8 +34,7 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts}:PopupProps) 
 
     const data = await res.json();
     console.log(data);
-    setPromptInput('');
-    setPopUpVisibleState(false);
+    onClose();
     fetchPrompts();
   }
   
