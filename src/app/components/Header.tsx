@@ -34,8 +34,8 @@ const Header = () => {
         </div>
 
       <div className="flex hideOnMobile" style={{height:"13.5vh"}}>
-        <div className="flex-custom-1 flex justify-center items-center">
-          <Image src={logo} alt="brand-logo" style={{ width: '9.194rem', height: '2.363rem'}} loading='lazy'/>
+        <div className="flex-custom-1 flex items-center">
+          <Image src={logo} alt="brand-logo" style={{ width: '9.194rem', height: '2.363rem',marginLeft:'10vw'}} loading='lazy'/>
         </div>
         <div className="flex-custom-1-65 flex justify-center items-center">
           <nav className={`${styles.mainNav} ${isDropdownOpen ? styles.open : ''}`}>

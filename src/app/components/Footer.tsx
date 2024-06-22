@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useRef , useEffect, useState} from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import footerLogo from '../assets/footer/logo.png'
@@ -9,8 +9,21 @@ import mediumLogo from '../assets/medium.png'
 import footerLogoFull from '../assets/footer/footer_logo_full.svg'
 
 const Footer = () => {
+  const contentElementRef = useRef<HTMLDivElement>(null);
+  const [heightContent, setHeightContent] = useState(0);
+
+  useEffect(() => {
+    if (contentElementRef.current) {
+      setHeightContent(contentElementRef.current.offsetHeight + 40);
+    }
+  }, []);
+
   return (
     <footer className="bg-white py-6">
+
+      
+      
+
       <div className="container mx-auto flex justify-between items-start hideOnMobile">
         <div className="flex items-start ml-6">
           <Image src={footerLogo} alt="Logo" width={40} height={40} className='mr-12'/>

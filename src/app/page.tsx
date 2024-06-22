@@ -54,7 +54,7 @@ const Page = () => {
     <div className="flex flex-col min-h-screen inter.variable">
       <Header></Header>
       
-      <div className="flex h-screen hideOnMobile">
+      <div className="flex hideOnMobile min-h-screen">
         <div className="flex-custom-1 flex justify-center" style={{marginTop : "10vh"}}>
           <Walletconnect setWalletAddress={setWalletAddress} />
         </div>
