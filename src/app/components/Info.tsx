@@ -29,13 +29,13 @@ const Info = () => {
               {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
                   
               </span> */}
-              <span className="mx-2 sm:mx-0 sm:ml-2" style={{ width: '1.875rem', display: 'inline-block', textAlign: 'right',color:"#7A7A7A", fontSize:"1.125rem",fontWeight:"400"}}>
+              <span className="mx-2 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',color:"#7A7A7A", fontSize:"1.125rem",fontWeight:"400"}}>
                   01
               </span>
               </div>
               <div
               style={{
-                  width: '3px',
+                  width: '2px',
                   height: `${heightTopPrompt}px`,
                   backgroundColor: 'black',
                   marginTop: '0.5vh',
@@ -64,13 +64,13 @@ const Info = () => {
               {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
                   
               </span> */}
-              <span className="mx-2 sm:mx-0 sm:ml-2" style={{ width: '1.875rem', display: 'inline-block', textAlign: 'right',color:"#7A7A7A", fontSize:"1.125rem",fontWeight:"400"}}>
+              <span className="mx-2 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',color:"#7A7A7A", fontSize:"1.125rem",fontWeight:"400"}}>
                   02
               </span>
               </div>
               <div
               style={{
-                  width: '3px',
+                  width: '2px',
                   height: `${heightContent}px`,
                   backgroundColor: 'black',
                   marginTop: '0.5vh',

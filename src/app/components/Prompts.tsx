@@ -145,7 +145,7 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
             <button className="w-5 h-5 mb-1 sm:mb-0 cursor-pointer" onClick={signUpVote} style={{marginRight:"0.2rem"}}>
                 <Image src={upArrow} alt="Down arrow" layout="responsive" className={(didUserVoted || !userWalletAddress) ? 'opacity-50' : ''}/>
             </button>
-            <span className="mx-1 sm:mx-0 sm:ml-2" style={{ width: '1.875rem', display: 'inline-block', textAlign: 'right',fontSize:"1rem",fontWeight:"900"}}>
+            <span className="mx-1 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',fontSize:"1rem",fontWeight:"900"}}>
                 276
             </span>
             {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2" style={{ width: '40px', display: 'inline-block', textAlign: 'right',color:"#fe195d" }}>
@@ -155,7 +155,7 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
             <div
             className="hidden sm:block"
             style={{
-                width: '3px',
+                width: '2px',
                 height: `${heightContent}px`,
                 backgroundColor: 'black',
                 marginTop: '0.5vh',
