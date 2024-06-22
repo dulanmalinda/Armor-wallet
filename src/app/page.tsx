@@ -51,14 +51,14 @@ const Page = () => {
 
   return (
     <>
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen inter.variable">
       <Header></Header>
       
       <div className="flex h-screen hideOnMobile">
         <div className="flex-custom-1 flex justify-center" style={{marginTop : "10vh"}}>
           <Walletconnect setWalletAddress={setWalletAddress} />
         </div>
-        <div className="flex-custom-1-25 p-4 rounded-lg shadow-md overflow-y-scroll hide-scrollbar">
+        <div className="flex-custom-25 ">
           
           <Info></Info>
 

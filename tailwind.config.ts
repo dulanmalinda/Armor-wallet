@@ -16,6 +16,9 @@ const config: Config = {
       height: {
         '1/3-screen': '33.333333vh',
       },
+      fontFamily: {
+        'jetbrains-mono': ['"JetBrains Mono"', 'monospace'],
+      },
     },
   },
   plugins: [],

@@ -1,4 +1,4 @@
-import {useEffect, useState } from 'react';
+import {useRef , useEffect, useState } from 'react';
 import Image from 'next/image'
 import downArrow from '../assets/prompts/downArrow.png'
 import upArrow from '../assets/prompts/upArrow.png'
@@ -22,6 +22,9 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
     const [downVoteSignature, setDownVoteSignature] = useState<String>("");
     const [hasBeenVotedByThisUser, setHasBeenVotedByThisUser] = useState<boolean>(true);
 
+    const contentElementRef = useRef<HTMLDivElement>(null);
+    const [heightContent, setHeightContent] = useState(0);
+
     const activeAccount = useActiveAccount();
 
     const truncateText = (text: string, maxLength: number) => {
@@ -35,13 +38,13 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
     };
 
     const signUpVote = () => {
-        if(!didUserVoted){
+        if(!didUserVoted && userWalletAddress){
             signVote(true);
         }
     }
 
     const signDownVote = () =>{
-        if(!didUserVoted){
+        if(!didUserVoted && userWalletAddress){
             signVote(false);
         }
     }
@@ -125,44 +128,50 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
         }
     }, [upVoteSignature,downVoteSignature]);
 
+    useEffect(() => {
+        if (contentElementRef.current) {
+          setHeightContent(contentElementRef.current.offsetHeight + 30);
+        }
+      }, []);
+
 
   return (
        <div className="flex flex-col sm:flex-row items-start p-4 max-w-full sm:max-w-3xl">
         <div className="flex-shrink-0 flex flex-col sm:flex-row items-start">
             <div className="flex items-center">
-            <div className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" onClick={signUpVote}>
-                <Image src={upArrow} alt="Up arrow" layout="responsive" />
-            </div>
-            <div className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" onClick={signDownVote}>
-                <Image src={downArrow} alt="Down arrow" layout="responsive" />
-            </div>
-            <span className="font-bold mx-2 sm:mx-0 sm:ml-2" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
-                {upVoteCount}
+            <button className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" onClick={signDownVote}>
+                <Image src={downArrow} alt="Up arrow" layout="responsive" className={(didUserVoted || !userWalletAddress) ? 'opacity-50' : ''}/>
+            </button>
+            <button className="w-5 h-5 mb-1 sm:mb-0 cursor-pointer" onClick={signUpVote} style={{marginRight:"0.2rem"}}>
+                <Image src={upArrow} alt="Down arrow" layout="responsive" className={(didUserVoted || !userWalletAddress) ? 'opacity-50' : ''}/>
+            </button>
+            <span className="mx-1 sm:mx-0 sm:ml-2" style={{ width: '1.875rem', display: 'inline-block', textAlign: 'right',fontSize:"1rem",fontWeight:"900"}}>
+                276
             </span>
-            <span className="font-bold mx-2 sm:mx-0 sm:ml-2" style={{ width: '40px', display: 'inline-block', textAlign: 'right',color:"#fe195d" }}>
+            {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2" style={{ width: '40px', display: 'inline-block', textAlign: 'right',color:"#fe195d" }}>
                 {downVoteCount}
-            </span>
+            </span> */}
             </div>
             <div
             className="hidden sm:block"
             style={{
                 width: '3px',
-                height: '14vh',
+                height: `${heightContent}px`,
                 backgroundColor: 'black',
                 marginTop: '0.5vh',
                 marginLeft : '0.5vw'
             }}
             />
         </div>
-        <div className="ml-4 mt-2 sm:mt-0">
+        <div className="ml-4 mt-2 sm:mt-0" ref={contentElementRef}>
             <div className="flex items-center">
-            <span className="text-gray-500">
+            <span style={{fontSize:"1rem",fontWeight:"400"}}>
                 {
                     authorsWalletAddress ? truncateText(authorsWalletAddress,10) : ""
                 }
             </span>
             </div>
-            <p className="mt-2 text-gray-700">
+            <p className="mt-1 font-jetbrains-mono" style={{fontSize:"1rem",fontWeight:"700"}}>
             {prompt}
             </p>
         </div>

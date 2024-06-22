@@ -1,13 +1,16 @@
 /* Header.module.css */
 .mainNav {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  gap: 1.563rem;
   transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   overflow: hidden;
   max-height: 0;
   opacity: 0;
   transform: translateY(-20px);
+  font-size: 1rem;
+  font-family: 'Inter',sans-serif;
+  font-weight: 700;
+  margin-left: 0.563rem;
 }
 
 .mainNav.open {
@@ -35,23 +38,25 @@
     left: 0;
     width: 100%;
     background-color: white;
-    text-align: left;
+    text-align: center;
     padding: 0;
     margin-top: 40px;
     padding-bottom: 20px;
   }
 
   .socialLinks {
-    display: none;
+    display: flex;
+    justify-content: center;
   }
 
   .menuToggle {
     display: block;
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 1.2rem;
+    font-weight: bold;
     cursor: pointer;
-    margin-right: 6%;
+    margin-right: 3vw;
   }
 }
 

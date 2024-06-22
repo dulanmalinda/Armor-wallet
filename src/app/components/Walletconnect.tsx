@@ -71,7 +71,7 @@ const Walletconnect = ({ setWalletAddress}: WalletconnectProps) => {
 
           onDisconnect={onDisconnected}
 
-          autoConnect = {true}
+          autoConnect = {{timeout : 20000}}
 
           connectModal={{ 
             size:  "compact",
