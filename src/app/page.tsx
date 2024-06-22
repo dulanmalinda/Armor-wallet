@@ -55,10 +55,10 @@ const Page = () => {
       <Header></Header>
       
       <div className="flex hideOnMobile min-h-screen">
-        <div className="flex-custom-1 flex justify-center" style={{marginTop : "10vh"}}>
+        <div className="flex-custom-1-2 flex justify-center" style={{marginTop : "10vh"}}>
           <Walletconnect setWalletAddress={setWalletAddress} />
         </div>
-        <div className="flex-custom-25 ">
+        <div className="flex-custom-2-3 ">
           
           <Info></Info>
 

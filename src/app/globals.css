@@ -68,6 +68,21 @@ body {
   flex-basis: 0;
 }
 
+.flex-custom-1-2 {
+  flex-grow: 1.2;
+  flex-basis: 0;
+}
+
+.flex-custom-1-9 {
+  flex-grow: 1.9;
+  flex-basis: 0;
+}
+
+.flex-custom-2-3 {
+  flex-grow: 2.3;
+  flex-basis: 0;
+}
+
 @media (max-width: 912px){
   .hideOnMobile {
     display:none;
