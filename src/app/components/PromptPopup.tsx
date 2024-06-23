@@ -108,7 +108,7 @@ useEffect(() => {
     <div onClick={onClose}>
       <div
         className={`
-          fixed inset-0 bg-white bg-opacity-40 backdrop-blur-lg transition-opacity z-10 
+          fixed inset-0 bg-white bg-opacity-0 backdrop-blur-lg transition-opacity z-10 
           ${isVisible ? 'visible' : 'invisible'} ${isOpen ? 'opacity-100' : 'opacity-0'}`}
       >
       </div>

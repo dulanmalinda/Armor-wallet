@@ -3,7 +3,7 @@
       transform: translateX(0);
     }
     50% {
-        transform: translateX(calc(40vw));
+        transform: translateX(calc(38vw));
     }
     100% {
       transform: translateX(0);
