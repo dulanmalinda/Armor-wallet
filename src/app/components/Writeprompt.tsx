@@ -6,12 +6,13 @@ import Popup from '../components/PromptPopup';
 interface WritepromptProps {
   walletAddress: string | null;
   fetchPrompts:() =>void;
-  bsaeApiURL:string;
+  setUserPromptCount: (newValue: number | null) => void;
+  baseApiURL:string;
 }
 
-const Writeprompt = ({walletAddress,fetchPrompts,bsaeApiURL} : WritepromptProps) => {
+const Writeprompt = ({walletAddress,fetchPrompts,setUserPromptCount,baseApiURL} : WritepromptProps) => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
-  const [promptSubmittedOnce, setPromptSubmittedOnce] = useState<boolean>(true);
+  const [promptSubmittedTomax, setpromptSubmittedTomax] = useState<boolean>(true);
 
   const contentElementRef = useRef<HTMLDivElement>(null);
   const [heightContent, setHeightContent] = useState(0);
@@ -19,18 +20,31 @@ const Writeprompt = ({walletAddress,fetchPrompts,bsaeApiURL} : WritepromptProps)
     const togglePopUp  = () =>{
         setShowPopup((prevState) => !prevState);
     }
-  
-    const checkForExistingPrompts = () => {
-      setPromptSubmittedOnce(true)
-      fetch(`${bsaeApiURL}check-wallet?walletAddress=${walletAddress}`)
+
+    const checkForExistingPrompts= () => {
+      fetch(`${baseApiURL}user?walletAddress=${walletAddress}`)
         .then((response) => response.json())
         .then((data) => {
-           setPromptSubmittedOnce(data.exists);
+
+            setUserPromptCount(data.promptsCount)
+
+            if(data.promptsCount >= 20) //Here sets the max prompts count
+            {
+               setpromptSubmittedTomax(true);
+            }
+            else
+            {
+              setpromptSubmittedTomax(false);
+            }
+
         });
     };
+  
 
     useEffect(() => {
-      checkForExistingPrompts();
+      if(walletAddress){
+        checkForExistingPrompts();
+      }
     }, [walletAddress,showPopup]);
 
     useEffect(() => {
@@ -60,14 +74,14 @@ const Writeprompt = ({walletAddress,fetchPrompts,bsaeApiURL} : WritepromptProps)
               </span>
             </div>
 
-            <button onClick={togglePopUp} className="bg-[#BDFF6A] text-white font-bold py-2 px-4 rounded pl-20 pr-20  disabled:bg-opacity-50" disabled={!walletAddress || promptSubmittedOnce}>
+            <button onClick={togglePopUp} className="bg-[#BDFF6A] font-bold py-2 px-4 rounded pl-20 pr-20  disabled:bg-opacity-50" disabled={!walletAddress || promptSubmittedTomax}>
               <span> + </span>
             </button>
           </div>
         </div>
 
         <div className="items-center">
-          <Popup isOpen={showPopup} onClose={togglePopUp} walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={bsaeApiURL}/>
+          <Popup isOpen={showPopup} onClose={togglePopUp} walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={baseApiURL} />
         </div>
       </>
       )

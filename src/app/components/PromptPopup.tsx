@@ -37,9 +37,10 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL}:P
     });
 
     const data = await res.json();
-    onClose();
-    setLoading(false);
-    fetchPrompts();
+    if(activeAccount?.address)
+    {
+      updateUserPrompts(activeAccount?.address);
+    }
   }
   
   const handleSignMessage = async () => {
@@ -64,6 +65,20 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL}:P
       setLoading(false);
     }
   };  
+
+  const updateUserPrompts = async (addr:string) => {
+    const res = await fetch(`${baseApiURL}user/increment?walletAddress=${addr}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    const data = await res.json();
+    onClose();
+    setLoading(false);
+    fetchPrompts();
+  }
 
   useEffect(() => {
       if (signature) {
@@ -136,6 +151,7 @@ useEffect(() => {
             className="w-full py-2 px-3 text-black-700 leading-tight focus:outline-none font-jetbrains-mono"
             style={{height:"20vh",border:"1px solid black",fontSize:"1rem"}}
             placeholder="Type Here"
+            value={promptInput}
             onChange={handleChange}
           />
 

@@ -17,6 +17,8 @@ const Page = () => {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [prompts, setPrompts] = useState<any[]>([]);
 
+  const [userSubmittedPromptCount, setUserSubmittedPromptCount] = useState<number | null>(null);
+
   const wallets = [
     inAppWallet(),
     createWallet("io.metamask"),
@@ -57,7 +59,7 @@ const Page = () => {
       <div className="flex hideOnMobile min-h-screen">
         <div className="flex-custom-1-2 flex justify-end">
           <div style={{marginTop:"20vh"}}>
-            <Walletconnect setWalletAddress={setWalletAddress} />
+            <Walletconnect setWalletAddress={setWalletAddress} baseApiURL={apiURL} />
           </div>
         </div>
         <div className="flex-custom-2-3 ">
@@ -86,7 +88,7 @@ const Page = () => {
         </div>
         <div className="flex-custom-1-2 flex justify-start">
           <div style={{marginTop:"20vh", paddingLeft:"3vw"}}>
-            <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} bsaeApiURL={apiURL} />
+            <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={apiURL} setUserPromptCount={setUserSubmittedPromptCount} />
           </div>
         </div>
       </div>
@@ -97,10 +99,10 @@ const Page = () => {
 
           <div className="grid grid-cols-2 gap-4 h-24 ">
             <div className="flex items-center justify-center">
-              <Walletconnect setWalletAddress={setWalletAddress} />
+              <Walletconnect setWalletAddress={setWalletAddress} baseApiURL={apiURL} />
             </div>
             <div className="flex items-center justify-center">
-              <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} bsaeApiURL={apiURL}/>
+              <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={apiURL} setUserPromptCount={setUserSubmittedPromptCount}/>
             </div>
           </div>
           <div className="">

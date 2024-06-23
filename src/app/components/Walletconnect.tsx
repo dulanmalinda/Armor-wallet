@@ -11,9 +11,10 @@ import connectTick from '../assets/connectedTick.png'
 
 interface WalletconnectProps {
   setWalletAddress: (newValue: string | null) => void;
+  baseApiURL:string;
 }
 
-const Walletconnect = ({ setWalletAddress}: WalletconnectProps) => {
+const Walletconnect = ({ setWalletAddress,baseApiURL}: WalletconnectProps) => {
   const [connectedChainId, setConnectedChainId] = useState(0);
   
   const contentElementRef = useRef<HTMLDivElement>(null);
