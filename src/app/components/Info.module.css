@@ -1,0 +1,32 @@
+@keyframes moveLine {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+        transform: translateX(calc(40vw));
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .line {
+    width: 2px;
+    height: 100px; 
+    background-color: black;
+    margin-top: 0.5vh;
+    margin-left: 0.5vw;
+  }
+
+  .animated {
+    animation: moveLine 2s cubic-bezier(0.42, 0, 0.58, 1);
+  }
+
+  .hidden {
+    opacity: 0;
+    transition: opacity 0.1s ease-out;
+  }
+  
+  .visible {
+    opacity: 1;
+  }

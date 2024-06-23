@@ -1,10 +1,16 @@
 import React, { useRef, useEffect, useState } from 'react'
+import styles from './Info.module.css'
 
 const Info = () => {
   const topPromptElementRef = useRef<HTMLDivElement>(null);
   const [heightTopPrompt, setHeightTopPrompt] = useState(0);
   const contentElementRef = useRef<HTMLDivElement>(null);
   const [heightContent, setHeightContent] = useState(0);
+
+  const lineRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<(HTMLSpanElement | null)[]>([]);
+  const [linePosition, setLinePosition] = useState(0);
+  const [textVisible, setTextVisible] = useState(false);
 
   useEffect(() => {
     if (topPromptElementRef.current) {
@@ -13,7 +19,45 @@ const Info = () => {
     if (contentElementRef.current) {
       setHeightContent(contentElementRef.current.offsetHeight + 40);
     }
+    if(lineRef.current)
+    {
+      lineRef.current.classList.add(styles.animated);
+    }
   }, []);
+
+
+  const updateLinePosition = () => {
+    if (lineRef.current) {
+      setLinePosition(lineRef.current.getBoundingClientRect().left + lineRef.current.clientWidth);
+    }
+  };
+
+   // Set an interval to check height periodically
+   const interval = setInterval(() => {
+    updateLinePosition();
+  }, 10);
+
+  const animationDuration = 2 * 1000; // 5 seconds in milliseconds
+    const halfwayDuration = animationDuration / 2;
+
+    const timeout = setTimeout(() => {
+      setTextVisible(true);
+    }, halfwayDuration);
+
+    useEffect(() => {
+      if (textVisible) {
+        console.log(textVisible);
+        textRef.current.forEach((letter) => {
+          if (letter && letter.getBoundingClientRect().right > linePosition) {
+            letter.classList.add(styles.visible);
+          } else if (letter) {
+            letter.classList.remove(styles.visible);
+          }
+        });
+      }
+    }, [linePosition, textVisible]);
+
+  const text = "Top Prompts";
 
   return (
     <>
@@ -34,19 +78,28 @@ const Info = () => {
               </span>
               </div>
               <div
+                ref={lineRef}
+              className={styles.line}
               style={{
-                  width: '2px',
-                  height: `${heightTopPrompt}px`,
-                  backgroundColor: 'black',
-                  marginTop: '0.5vh',
-                  marginLeft : '0.5vw'
+                  height: `${heightTopPrompt}px`
               }}
               />
           </div>
           <div className="ml-4 sm:mt-0" ref={topPromptElementRef}>
               <div className="flex items-start">
-                <span style={{fontSize:"4.5rem",fontWeight:"400",marginTop:"-1.4rem"}}>
-                  Top Prompts
+                <span style={{ fontSize: "4.5rem", fontWeight: "400", marginTop: "-1.4rem", display: "inline-block" }}>
+                  {text.split("").map((char, index) => (
+                    <span
+                      key={index}
+                      ref={(el) => {
+                        textRef.current[index] = el;
+                      }}
+                      className={styles.hidden}
+                      style={{ display: "inline-block" }}
+                    >
+                      {char}
+                    </span>
+                  ))}
                 </span>
               </div>
           </div>
