@@ -19,12 +19,12 @@
   }
 
   .animated {
-    animation: moveLine 2s cubic-bezier(0.42, 0, 0.58, 1);
+    animation: moveLine 2s cubic-bezier(0.1, 0, 0.4, 1) forwards;
   }
 
   .hidden {
     opacity: 0;
-    transition: opacity 0.1s ease-out;
+    transition: opacity 0.1s ease-in;
   }
   
   .visible {
