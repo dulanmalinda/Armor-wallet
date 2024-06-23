@@ -1,10 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { ConnectButton, darkTheme } from 'thirdweb/react';
 import { createWallet} from "thirdweb/wallets";
 import { createThirdwebClient,defineChain } from "thirdweb";
 import { useActiveAccount } from "thirdweb/react";
+import Image from 'next/image'
+import connectCircle from '../assets/connectCircle.png'
+import connectTick from '../assets/connectedTick.png'
 
 interface WalletconnectProps {
   setWalletAddress: (newValue: string | null) => void;
@@ -12,6 +15,9 @@ interface WalletconnectProps {
 
 const Walletconnect = ({ setWalletAddress}: WalletconnectProps) => {
   const [connectedChainId, setConnectedChainId] = useState(0);
+  
+  const contentElementRef = useRef<HTMLDivElement>(null);
+  const [heightContent, setHeightContent] = useState(0);
 
   const connectedChain = defineChain(connectedChainId);
 
@@ -51,51 +57,118 @@ const Walletconnect = ({ setWalletAddress}: WalletconnectProps) => {
     if(activeAccount?.address){
       setWalletAddress(activeAccount?.address);
     }
-}, [activeAccount?.address]);
+  }, [activeAccount?.address]);
+
+  useEffect(() => {
+    if (contentElementRef.current) {
+      setHeightContent(contentElementRef.current.offsetHeight + 40);
+    }
+  }, []);
+
+  const customRender = () => {
+    return (
+      <button className='flex' style={{backgroundColor:"#BDFF6A", paddingLeft:"1rem", paddingRight:"1rem",  paddingTop:"1rem",paddingBottom:"1rem"}}>
+        <Image src={connectTick} alt="Up arrow" layout="responsive" style={{width:"1.25rem",height:"1.25rem",marginRight:"0.5rem",borderRadius:"1px"}}/>
+        <p>
+          {
+            activeAccount?.address ? truncateText(activeAccount.address,10) : ""
+          }  
+        </p>
+      </button>
+    );
+  };
 
   return (
-    <div className="items-center">
-      <ConnectButton 
-          client={client} 
+    <>
+      <div className="flex flex-col sm:flex-row items-start max-w-full sm:max-w-3xl">
+          <div className="flex-shrink-0 flex flex-col sm:flex-row items-start hideOnMobile">
+              <div className="flex items-center">
+              <div className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" >
+                  
+              </div>
+              <div className="w-5 h-5 mb-1 sm:mb-0  cursor-pointer" style={{marginRight:"0.2rem"}}>
+                  
+              </div>
+              {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
+                  
+              </span> */}
+              <span className="mx-2" style={{width:"0.938rem",height:"0.938rem"}}>
+                <Image src={connectCircle} alt="connect circle" layout="responsive" loading='lazy'/>
+              </span>
+              </div>
+              <div
+              style={{
+                  width: '2px',
+                  height: `${heightContent}px`,
+                  backgroundColor: 'black',
+                  marginTop: '0.5vh',
+                  marginLeft : '0.5vw',
+                  borderRadius: "1px"
+              }}
+              />
+          </div>
+          <div className="ml-4 mt-2 sm:mt-0" ref={contentElementRef}>
+            <div className="flex items-center mb-3">
+              <span style={{fontSize:"1rem",fontWeight:"400"}}>
+                Wallet
+              </span>
+            </div>
+            <ConnectButton
+                connectButton={{
+                  label: "Connect Wallet",
+                  className: "",
+                  style: {
+                    borderRadius: "1px",
+                    backgroundColor: "transparent",
+                    outline: "1px solid black"
+                  },
+                }}
+                
+                client={client} 
 
-          wallets={wallets} 
+                wallets={wallets} 
 
-          theme={darkTheme({
-            colors: {
-                primaryButtonBg: "#a7ff4b",
-                primaryButtonText: "white",
-              },
-          })}
+                theme={darkTheme({
+                  colors: {
+                      primaryButtonBg: "#BDFF6A",
+                      primaryButtonText: "black",
+                    }
+                })}
 
-          onConnect={(wallet) => onConnected(wallet.getAccount()?.address,wallet.getChain()?.id)}
+                onConnect={(wallet) => onConnected(wallet.getAccount()?.address,wallet.getChain()?.id)}
 
-          onDisconnect={onDisconnected}
+                onDisconnect={onDisconnected}
 
-          autoConnect = {{timeout : 20000}}
+                autoConnect = {{timeout : 20000}}
 
-          connectModal={{ 
-            size:  "compact",
-            showThirdwebBranding:false
-          }}
+                connectModal={{ 
+                  size:  "compact",
+                  showThirdwebBranding:false
+                }}
 
-          detailsButton={{
-            style: { 
-              borderRadius: "10px",
-            },
-          }}
-          
-          detailsModal={{
-            payOptions:{
-              buyWithCrypto: false,
-              buyWithFiat:false,
-              prefillBuy: {
-                allowEdits: { amount: true, chain: false, token: false },
-                chain: connectedChain,
-              },
-            }
-          }}
-      />
-    </div>
+                detailsButton={{
+                  style: { 
+                    borderRadius: "1px",
+                    backgroundColor: "#BDFF6A",
+                    color:"black"
+                  },
+                  render: customRender
+                }}
+                
+                detailsModal={{
+                  payOptions:{
+                    buyWithCrypto: false,
+                    buyWithFiat:false,
+                    prefillBuy: {
+                      allowEdits: { amount: true, chain: false, token: false },
+                      chain: connectedChain,
+                    },
+                  }
+                }}
+            />
+          </div>
+        </div>
+    </>
   )
 }
 

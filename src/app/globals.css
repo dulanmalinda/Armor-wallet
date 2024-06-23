@@ -83,6 +83,16 @@ body {
   flex-basis: 0;
 }
 
+.logo-left-margins{
+  margin-left:18vw;
+}
+
+@media (max-width: 1400px){
+  .logo-left-margins{
+    margin-left:6vw;
+  }
+}
+
 @media (max-width: 912px){
   .hideOnMobile {
     display:none;

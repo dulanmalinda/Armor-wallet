@@ -29,7 +29,7 @@ const Footer = () => {
 
       <div className="flex hideOnMobile">
         <div className="flex-custom-1-2">
-          <Image src={footerLogo} alt="Logo" style={{ width: '2.85rem', height: '2.85rem', marginLeft:"18vw"}} className='mr-12'/>
+          <Image src={footerLogo} alt="Logo" style={{ width: '2.85rem', height: '2.85rem'}} className='mr-12 logo-left-margins'/>
         </div>
         <div className="flex-custom-1-9">
 
