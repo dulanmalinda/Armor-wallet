@@ -18,7 +18,7 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL}:P
   const [promptInput, setPromptInput] = useState<string>("");
   const [upVotes, setupVotes] = useState<number>(0);
   const [downVotes, setdownVotes] = useState<number>(0);
-  const [signature, setSignature] = useState<String>("");
+  const [signature, setSignature] = useState<String|null>("");
   const [loading, setLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -37,6 +37,7 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL}:P
     });
 
     const data = await res.json();
+    setSignature(null);
     if(activeAccount?.address)
     {
       updateUserPrompts(activeAccount?.address);
@@ -54,9 +55,9 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL}:P
     try {
       const signature = await activeAccount?.signMessage({message:"confirm prompt"});
 
-      console.log("Signature:", signature);
       if(signature)
       {
+        console.log("Signature:", signature);
         setSignature(signature?.toString());
       }
 
@@ -166,11 +167,11 @@ useEffect(() => {
               className="mt-4 mr-4 bg-[#BDFF6A] px-4 py-2 disabled:bg-opacity-50"
               onClick={handleSignMessage}
               style={{ width: '300px', fontSize: "1rem" }}
-              disabled={loading}
+              disabled={loading || promptInput == ''}
             >
               {loading ? (
                 <ClipLoader
-                  color={"#ffffff"}
+                  color={"#000000"}
                   loading={loading}
                   size={15}
                   aria-label="Loading Spinner"
