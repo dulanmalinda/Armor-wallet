@@ -146,7 +146,7 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
                     <Image src={upArrow} alt="Down arrow" layout="responsive" className={(didUserVoted || !userWalletAddress) ? 'opacity-50' : ''}/>
                 </button>
                 <span className="mx-1 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',fontSize:"1rem",fontWeight:"900"}}>
-                    276
+                    {upVoteCount}
                 </span>
                 {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2" style={{ width: '40px', display: 'inline-block', textAlign: 'right',color:"#fe195d" }}>
                     {downVoteCount}

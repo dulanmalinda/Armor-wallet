@@ -61,19 +61,17 @@ const Walletconnect = ({ setWalletAddress}: WalletconnectProps) => {
 
   useEffect(() => {
     if (contentElementRef.current) {
-      setHeightContent(contentElementRef.current.offsetHeight + 40);
+      setHeightContent(contentElementRef.current.offsetHeight + 20);
     }
   }, []);
 
   const customRender = () => {
     return (
-      <button className='flex' style={{backgroundColor:"#BDFF6A", paddingLeft:"1rem", paddingRight:"1rem",  paddingTop:"1rem",paddingBottom:"1rem"}}>
-        <Image src={connectTick} alt="Up arrow" layout="responsive" style={{width:"1.25rem",height:"1.25rem",marginRight:"0.5rem",borderRadius:"1px"}}/>
-        <p>
+      <button className='flex' style={{backgroundColor:"#BDFF6A", paddingLeft:"1rem", paddingRight:"1rem",  paddingTop:"1rem",paddingBottom:"1rem",borderRadius:"1px"}}>
+        <Image src={connectTick} alt="connected tick" layout="responsive" style={{width:"1.25rem",height:"1.25rem",marginRight:"0.5rem"}} loading='lazy'/>
           {
             activeAccount?.address ? truncateText(activeAccount.address,10) : ""
           }  
-        </p>
       </button>
     );
   };
@@ -96,18 +94,18 @@ const Walletconnect = ({ setWalletAddress}: WalletconnectProps) => {
                 <Image src={connectCircle} alt="connect circle" layout="responsive" loading='lazy'/>
               </span>
               </div>
-              <div
+              <div 
               style={{
                   width: '2px',
                   height: `${heightContent}px`,
                   backgroundColor: 'black',
                   marginTop: '0.5vh',
                   marginLeft : '0.5vw',
-                  borderRadius: "1px"
+                  marginRight:"0.8vw",
               }}
               />
           </div>
-          <div className="ml-4 mt-2 sm:mt-0" ref={contentElementRef}>
+          <div className="mt-2 sm:mt-0" ref={contentElementRef}>
             <div className="flex items-center mb-3">
               <span style={{fontSize:"1rem",fontWeight:"400"}}>
                 Wallet

@@ -1,6 +1,6 @@
 'use client'
 
-import {SetStateAction, useEffect, useState } from 'react';
+import {useRef , useEffect, useState } from 'react';
 import { useActiveAccount } from "thirdweb/react";
 import ClipLoader from "react-spinners/ClipLoader";
 
@@ -20,6 +20,9 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL}:P
   const [signature, setSignature] = useState<String>("");
   const [loading, setLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+
+  const contentElementRef = useRef<HTMLDivElement>(null);
+  const [heightContent, setHeightContent] = useState(0);
 
   const activeAccount = useActiveAccount();
 
@@ -73,6 +76,12 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL}:P
     }
 }, [isOpen]);
 
+useEffect(() => {
+  if (contentElementRef.current) {
+    setHeightContent(contentElementRef.current.offsetHeight);
+  }
+}, []);
+
   const handleChange = (e: { target: { value: any; }; }) => {
     const input = e.target.value;
     const characterLimit = 1000; 
@@ -93,32 +102,47 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL}:P
     }
   }
 
+
   return (
     <>
-    <div
+    <div onClick={onClose}>
+      <div
         className={`
-          fixed inset-0 bg-gray-500 bg-opacity-40 backdrop-blur-lg transition-opacity z-1 transition-opacity duration-300 
+          fixed inset-0 bg-white bg-opacity-40 backdrop-blur-lg transition-opacity z-10 
           ${isVisible ? 'visible' : 'invisible'} ${isOpen ? 'opacity-100' : 'opacity-0'}`}
       >
-    </div>
+      </div>
 
-    <div className={`${isVisible ? 'visible' : 'invisible'} absolute inset-0 flex items-center justify-center transition-transform transition-opacity duration-300 ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-0'} z-2`} onTransitionEnd={() => setPopUpVisibleState(isOpen)}>
-        <div className={`bg-white p-8 rounded-lg`}>
-          <h2 className="text-lg font-bold mb-4">Input Field</h2>
+      <div
+        className={`${isVisible ? 'visible' : 'invisible'} fixed inset-0 flex items-center justify-center transition-transform transition-opacity duration-300 z-20 ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}
+        onTransitionEnd={() => setPopUpVisibleState(isOpen)}
+        //onClick={(e) => e.stopPropagation()}  // Prevent click propagation to the background
+      >
+        <div
+                style={{
+                    width: '2px',
+                    height: `${heightContent}px`,
+                    backgroundColor: 'black',
+                    marginTop: '0.5vh',
+                    marginLeft : '0.5vw',
+                }}
+          />
+        <div className="pl-4" ref={contentElementRef}>
+          <h2 className="mb-2" style={{fontSize:"1rem",fontWeight:"500"}} onClick={(e) => e.stopPropagation()}>Input Field</h2>
           
-          <input
-            className="w-full h-16 px-3 py-2 border rounded-md focus:outline-none focus:border-black-500 overflow-auto"
-            type="text"
-            placeholder='Type Here'
-            value={promptInput}
+          <textarea onClick={(e) => e.stopPropagation()}
+            id="prompt"
+            className="w-full py-2 px-3 text-black-700 leading-tight focus:outline-none font-jetbrains-mono"
+            style={{height:"20vh",border:"1px solid black",fontSize:"1rem"}}
+            placeholder="Type Here"
             onChange={handleChange}
           />
 
-          <span className=''>
+          <span onClick={(e) => e.stopPropagation()}>
             <button
-              className="mt-4 mr-4 bg-[#a7ff4b] hover:bg-[#A5EE59] text-white px-4 py-2 rounded disabled:bg-[#CFFF94]"
+              className="mt-4 mr-4 bg-[#BDFF6A] px-4 py-2 disabled:bg-opacity-50"
               onClick={handleSignMessage}
-              style={{ width: '200px' }}
+              style={{ width: '300px', fontSize: "1rem" }}
               disabled={loading}
             >
               {loading ? (
@@ -133,17 +157,10 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL}:P
                 'Submit Your Prompt'
               )}
             </button>
-
-            <button
-              className="mt-4 bg-red-500 hover:bg-red-800 text-white px-4 py-2 rounded"
-              onClick={onClose}
-            >
-              Close
-            </button>
           </span>
         </div>
       </div>
-    
+    </div>
     </>
   )
 }

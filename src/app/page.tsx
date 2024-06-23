@@ -84,8 +84,10 @@ const Page = () => {
           </div>  
 
         </div>
-        <div className="flex-custom-1 flex justify-center" style={{marginTop : "9vh"}}>
-          <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} bsaeApiURL={apiURL} />
+        <div className="flex-custom-1-2 flex justify-start">
+          <div style={{marginTop:"20vh", paddingLeft:"3vw"}}>
+            <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} bsaeApiURL={apiURL} />
+          </div>
         </div>
       </div>
 
