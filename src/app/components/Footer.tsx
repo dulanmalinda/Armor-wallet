@@ -80,7 +80,7 @@ const Footer = () => {
           <div className="flex flex-col sm:flex-row items-start pb-4 max-w-full sm:max-w-3xl">
 
             <div className="flex-shrink-0 flex flex-col sm:flex-row items-start ">
-                <span className="" style={{ width: '3.8rem', display: 'inline-block', textAlign: 'right',color:"#7A7A7A", fontSize:"1.125rem",fontWeight:"400"}}>
+                <span className="" style={{ width: '3.25rem', display: 'inline-block', textAlign: 'right',color:"#7A7A7A", fontSize:"1.125rem",fontWeight:"400", marginRight:"0.5rem"}}>
                     Socials
                 </span>
               <div
