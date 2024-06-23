@@ -93,19 +93,7 @@ const Page = () => {
 
       <div className="flex-1 flex flex-col gap-4 p-4 hideOnDesktop">
 
-          <div className="flex flex-col justify-center items-center text-center">
-            <div className="mt-2">
-              <span className="text-5xl font-bold">
-                Top Prompts
-              </span>
-            </div>
-
-            <div className="mt-2">
-              <span className="text-lg">
-                Vote on the best (and worst) AI trading prompts that you would want to use in Armor Wallet. Connect your wallet to submit a prompt and then to vote on other prompts. 1 vote per wallet.
-              </span>
-            </div>
-          </div>
+          <Info></Info>
 
           <div className="grid grid-cols-2 gap-4 h-24 ">
             <div className="flex items-center justify-center">

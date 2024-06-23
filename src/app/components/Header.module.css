@@ -50,6 +50,11 @@
   animation: stripes 0.3s linear 1 forwards;
 }
 
+.linkAnimation:focus{
+  color: #BDFF6A;
+  background:black
+}
+
 @media (max-width: 912px) {
   .mainNav {
     display: flex;

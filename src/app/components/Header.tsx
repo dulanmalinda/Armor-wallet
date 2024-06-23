@@ -73,11 +73,11 @@ const Header = () => {
                 <Image src={logo} alt="brand-logo" style={{ width: '11.64585rem', height: '3.012rem'}} loading='lazy'/>
               </div>
               <nav className={`${styles.mainNav} ${isDropdownOpen ? styles.open : ''}`}>
-                <Link className="text-black no-underline hover:underline" href="#concept">CONCEPT</Link>
-                <Link className="text-black no-underline hover:underline" href="#features">FEATURES</Link>
-                <Link className="text-black no-underline hover:underline" href="#about">ABOUT</Link>
-                <Link className="text-black no-underline hover:underline" href="#tokenomics">TOKENOMICS</Link>
-                <Link className="text-black no-underline hover:underline" href="#roadmap">ROADMAP</Link>
+                <Link className={styles.linkAnimation} href="#concept">CONCEPT</Link>
+                <Link className={styles.linkAnimation}  href="#features">FEATURES</Link>
+                <Link className={styles.linkAnimation}  href="#about">ABOUT</Link>
+                <Link className={styles.linkAnimation}  href="#tokenomics">TOKENOMICS</Link>
+                <Link className={styles.linkAnimation}  href="#roadmap">ROADMAP</Link>
                 <div className={styles.socialLinks}>
                     <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
                       <Image src={twitterLogo} alt="Twitter" width={18.75} height={15} />

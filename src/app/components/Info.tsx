@@ -37,7 +37,7 @@ const Info = () => {
     updateLinePosition();
   }, 10);
 
-  const animationDuration = 2 * 1000; // 5 seconds in milliseconds
+  const animationDuration = 2 * 1000; 
     const halfwayDuration = animationDuration / 2;
 
     const timeout = setTimeout(() => {
@@ -61,13 +61,13 @@ const Info = () => {
 
   return (
     <>
-        <div className="flex flex-col sm:flex-row items-start p-4 max-w-full sm:max-w-3xl">
-          <div className="flex-shrink-0 flex flex-col sm:flex-row items-start hideOnMobile">
+        <div className="flex flex-row items-start sm:p-4 max-w-full sm:max-w-3xl">
+          <div className="flex-shrink-0 flex flex-row items-start ">
               <div className="flex items-center">
-              <div className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" >
+              <div className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer hideOnMobile" >
                   
               </div>
-              <div className="w-5 h-5 mb-1 sm:mb-0 cursor-pointer" style={{marginRight:"0.2rem"}} >
+              <div className="w-5 h-5 mb-1 sm:mb-0 cursor-pointer hideOnMobile" style={{marginRight:"0.2rem"}} >
                   
               </div>
               {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
@@ -87,7 +87,7 @@ const Info = () => {
           </div>
           <div className="ml-4 sm:mt-0" ref={topPromptElementRef}>
               <div className="flex items-start">
-                <span style={{ fontSize: "4.5rem", fontWeight: "400", marginTop: "-1.4rem", display: "inline-block" }}>
+                <span className={styles.title}>
                   {text.split("").map((char, index) => (
                     <span
                       key={index}
@@ -95,7 +95,6 @@ const Info = () => {
                         textRef.current[index] = el;
                       }}
                       className={styles.hidden}
-                      style={{ display: "inline-block" }}
                     >
                       {char}
                     </span>
@@ -105,13 +104,13 @@ const Info = () => {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-start p-4 max-w-full sm:max-w-3xl">
-          <div className="flex-shrink-0 flex flex-col sm:flex-row items-start hideOnMobile">
+        <div className="flex flex-row items-start sm:p-4 max-w-full sm:max-w-3xl">
+          <div className="flex-shrink-0 flex flex-row items-start">
               <div className="flex items-center">
-              <div className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" >
+              <div className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer hideOnMobile" >
                   
               </div>
-              <div className="w-5 h-5 mb-1 sm:mb-0  cursor-pointer" style={{marginRight:"0.2rem"}}>
+              <div className="w-5 h-5 mb-1 sm:mb-0  cursor-pointer hideOnMobile" style={{marginRight:"0.2rem"}}>
                   
               </div>
               {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
