@@ -39,11 +39,11 @@ const Header = () => {
         </div>
         <div className="flex-custom-1-65 flex justify-center items-center">
           <nav className={`${styles.mainNav} ${isDropdownOpen ? styles.open : ''}`}>
-            <Link className="text-black no-underline hover:underline" href="#concept">CONCEPT</Link>
-            <Link className="text-black no-underline hover:underline" href="#features">FEATURES</Link>
-            <Link className="text-black no-underline hover:underline" href="#about">ABOUT</Link>
-            <Link className="text-black no-underline hover:underline" href="#tokenomics">TOKENOMICS</Link>
-            <Link className="text-black no-underline hover:underline" href="#roadmap">ROADMAP</Link>
+            <Link className={styles.linkAnimation} href="#concept">CONCEPT</Link>
+            <Link className={styles.linkAnimation}  href="#features">FEATURES</Link>
+            <Link className={styles.linkAnimation}  href="#about">ABOUT</Link>
+            <Link className={styles.linkAnimation}  href="#tokenomics">TOKENOMICS</Link>
+            <Link className={styles.linkAnimation}  href="#roadmap">ROADMAP</Link>
           </nav>
         </div>
         <div className="flex-custom-1 flex justify-center items-center">

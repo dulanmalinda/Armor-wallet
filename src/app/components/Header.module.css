@@ -29,6 +29,27 @@
   display: none;
 }
 
+@keyframes stripes {
+  to {
+    background-size:100% 100%;
+  }
+}
+
+.linkAnimation {
+  display: inline-block;
+  padding: 0.4rem;
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s ease-out;
+}
+
+.linkAnimation:hover {
+  color: #BDFF6A;
+  background: linear-gradient( black , black) white no-repeat 0 0;
+  background-size: 0 100%;
+  animation: stripes 0.3s linear 1 forwards;
+}
+
 @media (max-width: 912px) {
   .mainNav {
     display: flex;

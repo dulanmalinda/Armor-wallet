@@ -19,6 +19,9 @@ const config: Config = {
       fontFamily: {
         'jetbrains-mono': ['"JetBrains Mono"', 'monospace'],
       },
+      colors: {
+        'armor-green': '#BDFF6A',
+      },
     },
   },
   plugins: [],
