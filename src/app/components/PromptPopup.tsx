@@ -118,10 +118,16 @@ useEffect(() => {
     }
   }
 
+  const closePopUp = () =>{
+    if(!loading){
+      onClose();
+    }
+  }
+
 
   return (
     <>
-    <div onClick={onClose}>
+    <div onClick={closePopUp}>
       <div
         className={`
           ${styles.blurBG}
