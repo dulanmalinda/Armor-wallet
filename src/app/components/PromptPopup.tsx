@@ -3,6 +3,7 @@
 import {useRef , useEffect, useState } from 'react';
 import { useActiveAccount } from "thirdweb/react";
 import ClipLoader from "react-spinners/ClipLoader";
+import styles from './PromptPopup.module.css'
 
 interface PopupProps {
     isOpen: boolean;
@@ -108,7 +109,7 @@ useEffect(() => {
     <div onClick={onClose}>
       <div
         className={`
-          fixed inset-0 bg-gray-100 bg-opacity-40 backdrop-blur-lg transition-opacity z-10 
+          ${styles.blurBG}
           ${isVisible ? 'visible' : 'invisible'} ${isOpen ? 'opacity-100' : 'opacity-0'}`}
       >
       </div>

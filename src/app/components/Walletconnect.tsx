@@ -67,8 +67,8 @@ const Walletconnect = ({ setWalletAddress}: WalletconnectProps) => {
 
   const customRender = () => {
     return (
-      <button className='flex' style={{backgroundColor:"#BDFF6A", paddingLeft:"1rem", paddingRight:"1rem",  paddingTop:"1rem",paddingBottom:"1rem",borderRadius:"1px"}}>
-        <Image src={connectTick} alt="connected tick" layout="responsive" style={{width:"1.25rem",height:"1.25rem",marginRight:"0.5rem"}} loading='lazy'/>
+      <button className='flex' style={{backgroundColor:"#BDFF6A", paddingLeft:"1rem", paddingRight:"1rem",  paddingTop:"1rem",paddingBottom:"1rem",borderRadius:"1px", alignItems:"center"}}>
+        <Image src={connectTick} alt="connected tick" layout="responsive" style={{width:"1.25rem",height:"1.25rem",marginRight:"0.5rem"}} loading='lazy' className='hideOnMobile'/>
           {
             activeAccount?.address ? truncateText(activeAccount.address,10) : ""
           }  
@@ -90,7 +90,7 @@ const Walletconnect = ({ setWalletAddress}: WalletconnectProps) => {
               {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
                   
               </span> */}
-              <span className="mx-2" style={{width:"0.938rem",height:"0.938rem"}}>
+              <span className="mx-2 hideOnMobile" style={{width:"0.938rem",height:"0.938rem"}}>
                 <Image src={connectCircle} alt="connect circle" layout="responsive" loading='lazy'/>
               </span>
               </div>
