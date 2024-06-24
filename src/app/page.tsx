@@ -71,7 +71,7 @@ const Page = () => {
         </div>
         <div className="flex-custom-2-3">
           
-          <Info setBtnDistanceFromTop={setBtnDistanceFromTop} setRenderBtns={setRenderBtns}></Info>
+          <Info setBtnDistanceFromTop={setBtnDistanceFromTop} setRenderBtns={setRenderBtns} isDesktop={true}/>
 
           <div className="">
               <div className='w-full'>
@@ -106,7 +106,7 @@ const Page = () => {
 
       <div className="flex-1 flex flex-col gap-4 p-4 hideOnDesktop">
 
-          <Info setBtnDistanceFromTop={setBtnDistanceFromTop} setRenderBtns={setRenderBtns}></Info>
+          <Info setBtnDistanceFromTop={setBtnDistanceFromTop} setRenderBtns={setRenderBtns} isDesktop={false}/>
 
           <div className="grid grid-cols-2 gap-4 h-24 ">
             <div className="flex items-center justify-center">

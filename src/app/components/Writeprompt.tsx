@@ -74,7 +74,7 @@ const Writeprompt = ({walletAddress,fetchPrompts,setUserPromptCount,baseApiURL} 
               </span>
             </div>
 
-            <button onClick={togglePopUp} style={{fontSize:"1.875rem",width:"10.66rem",height:"3rem"}}  className="bg-[#BDFF6A] rounded disabled:bg-opacity-50 disabled:opacity-50"disabled={!walletAddress || promptSubmittedTomax}>
+            <button onClick={togglePopUp} style={{fontSize:"1.875rem",width:"10.66rem",height:"3rem"}}  className="bg-[#BDFF6A] rounded  disabled:opacity-50"disabled={!walletAddress || promptSubmittedTomax}>
               +
             </button>
           </div>

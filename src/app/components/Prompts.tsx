@@ -1,7 +1,9 @@
 import {useRef , useEffect, useState } from 'react';
 import Image from 'next/image'
-import downArrow from '../assets/prompts/downArrow.png'
-import upArrow from '../assets/prompts/upArrow.png'
+import downArrowBlack from '../assets/prompts/downarrowBlack_prompts.svg'
+import upArrowBlack from '../assets/prompts/upnarrowBlack_prompts.svg'
+import downArrowRed from '../assets/prompts/downarrowRed_prompts.svg'
+import upArrowGreen from '../assets/prompts/uparrowGreen_prompts.svg'
 import { useActiveAccount } from "thirdweb/react";
 
 interface PromptsProps {
@@ -138,20 +140,42 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
   return (
        <div className="flex flex-col sm:flex-row items-start p-4 max-w-full sm:max-w-3xl">
             <div className="flex-shrink-0 flex flex-col sm:flex-row items-start">
-                <div className="flex items-center">
-                <button className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" onClick={signDownVote}>
-                    <Image src={downArrow} alt="Up arrow" layout="responsive" className={(didUserVoted || !userWalletAddress) ? 'opacity-50' : ''}/>
-                </button>
-                <button className="w-5 h-5 mb-1 sm:mb-0 cursor-pointer" onClick={signUpVote} style={{marginRight:"0.2rem"}}>
-                    <Image src={upArrow} alt="Down arrow" layout="responsive" className={(didUserVoted || !userWalletAddress) ? 'opacity-50' : ''}/>
-                </button>
-                <span className="mx-1 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',fontSize:"1rem",fontWeight:"900"}}>
-                    {upVoteCount}
-                </span>
-                {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2" style={{ width: '40px', display: 'inline-block', textAlign: 'right',color:"#fe195d" }}>
-                    {downVoteCount}
-                </span> */}
+                
+                <div className="flex items-center hideOnMobile">
+                    <div className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" >
+                        
+                    </div>
+                    <div className="w-5 h-5 mb-1 sm:mb-0 cursor-pointer" style={{marginRight:"0.2rem"}} >
+                        <button className="w-5 h-5 mb-1 sm:mb-0 cursor-pointer" onClick={signUpVote} style={{marginRight:"0.2rem"}}>
+                            <Image src={upArrowBlack} alt="Down arrow" layout="responsive" className={(didUserVoted || !userWalletAddress) ? 'opacity-50' : ''}/>
+                        </button>
+                        <button className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" onClick={signDownVote}>
+                            <Image src={downArrowBlack} alt="Up arrow" layout="responsive" className={(didUserVoted || !userWalletAddress) ? 'opacity-50' : ''}/>
+                        </button>
+                    </div>
+                    {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
+                        
+                    </span> */}
+                    <span className="mx-1 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',fontSize:"1rem",fontWeight:"900"}}>
+                        {upVoteCount}
+                    </span>
                 </div>
+
+                <div className="flex items-center hideOnDesktop">
+                    <button className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" onClick={signDownVote}>
+                        <Image src={downArrowBlack} alt="Up arrow" layout="responsive" className={(didUserVoted || !userWalletAddress) ? 'opacity-50' : ''}/>
+                    </button>
+                    <button className="w-5 h-5 mb-1 sm:mb-0 cursor-pointer" onClick={signUpVote} style={{marginRight:"0.2rem"}}>
+                        <Image src={upArrowBlack} alt="Down arrow" layout="responsive" className={(didUserVoted || !userWalletAddress) ? 'opacity-50' : ''}/>
+                    </button>
+                    <span className="mx-1 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',fontSize:"1rem",fontWeight:"900"}}>
+                        {upVoteCount}
+                    </span>
+                    {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2" style={{ width: '40px', display: 'inline-block', textAlign: 'right',color:"#fe195d" }}>
+                        {downVoteCount}
+                    </span> */}
+                </div>
+
                 <div
                 className="hidden sm:block"
                 style={{

@@ -151,7 +151,9 @@ useEffect(() => {
                 }}
           />
         <div className="pl-4" ref={contentElementRef}>
-          <h2 className="mb-2" style={{fontSize:"1rem",fontWeight:"500"}} onClick={(e) => e.stopPropagation()}>Input Field</h2>
+          <h2 className="mb-2" style={{fontSize:"1rem",fontWeight:"500"}} onClick={(e) => e.stopPropagation()}>
+            Add your Armor AI prompt below. No description, just the prompt
+          </h2>
           
           <textarea onClick={(e) => e.stopPropagation()}
             id="prompt"
@@ -164,7 +166,7 @@ useEffect(() => {
 
           <span onClick={(e) => e.stopPropagation()}>
             <button
-              className="mt-4 mr-4 bg-[#BDFF6A] px-4 py-2 disabled:bg-opacity-50"
+              className="mt-4 mr-4 bg-[#BDFF6A] px-4 py-2 disabled:opacity-50"
               onClick={handleSignMessage}
               style={{ width: '300px', fontSize: "1rem" }}
               disabled={loading || promptInput == ''}
@@ -178,7 +180,7 @@ useEffect(() => {
                   data-testid="loader"
                 />
               ) : (
-                'Submit Your Prompt'
+                "Submit Your Prompt"
               )}
             </button>
           </span>

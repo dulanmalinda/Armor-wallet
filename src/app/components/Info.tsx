@@ -4,9 +4,10 @@ import styles from './Info.module.css'
 interface InfoProps {
   setBtnDistanceFromTop: (newValue: number | null) => void;
   setRenderBtns: (newValue: boolean) => void;
+  isDesktop: boolean
 }
 
-const Info = ({setBtnDistanceFromTop,setRenderBtns}:InfoProps) => {
+const Info = ({setBtnDistanceFromTop,setRenderBtns,isDesktop}:InfoProps) => {
   const topPromptElementRef = useRef<HTMLDivElement>(null);
   const [heightTopPrompt, setHeightTopPrompt] = useState(0);
   const contentElementRef = useRef<HTMLDivElement>(null);
@@ -33,7 +34,7 @@ const Info = ({setBtnDistanceFromTop,setRenderBtns}:InfoProps) => {
 
     if (btnComponentRef.current) {
       const rect = btnComponentRef.current.getBoundingClientRect();
-      if(rect.top + window.scrollY > 0){
+      if(rect.top + window.scrollY > 0 && isDesktop){
         setBtnDistanceFromTop(rect.top + window.scrollY); 
         setRenderBtns(true);
       }
@@ -131,11 +132,11 @@ const Info = ({setBtnDistanceFromTop,setRenderBtns}:InfoProps) => {
               {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
                   
               </span> */}
-              <span  className="mx-2 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',color:"#7A7A7A", fontSize:"1.125rem",fontWeight:"400"}}>
+              <span  ref={btnComponentRef}  className="mx-2 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',color:"#7A7A7A", fontSize:"1.125rem",fontWeight:"400"}}>
                   02
               </span>
               </div>
-              <div ref={btnComponentRef} 
+              <div
               style={{
                   width: '2px',
                   height: `${heightContent}px`,
