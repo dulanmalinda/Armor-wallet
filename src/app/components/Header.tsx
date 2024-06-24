@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import logo from '../assets/logo.svg'
-import tgLogo from '../assets/telegram.png';
-import twitterLogo from '../assets/twitter.png'
+import logo from '../assets/header/logo_header.svg'
+import tgLogo from '../assets/header/telegram_header.svg';
+import twitterLogo from '../assets/header/twitter_header.svg'
 import { useState } from 'react';
 import styles from './Header.module.css';
 
@@ -48,12 +48,12 @@ const Header = () => {
         </div>
         <div className="flex-custom-1 flex justify-center items-center">
           <div className={styles.socialLinks}>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer">
               <Image src={twitterLogo} alt="Twitter" width={18.75} height={15} />
-            </a>
-            <a href="https://telegram.org" target="_blank" rel="noopener noreferrer">
+            </Link>
+            <Link href="https://telegram.org" target="_blank" rel="noopener noreferrer">
               <Image src={tgLogo} alt="Telegram" width={16.66} height={15} />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -79,12 +79,12 @@ const Header = () => {
                 <Link className={styles.linkAnimation}  href="#tokenomics">TOKENOMICS</Link>
                 <Link className={styles.linkAnimation}  href="#roadmap">ROADMAP</Link>
                 <div className={styles.socialLinks}>
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                    <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer">
                       <Image src={twitterLogo} alt="Twitter" width={18.75} height={15} />
-                    </a>
-                    <a href="https://telegram.org" target="_blank" rel="noopener noreferrer">
+                    </Link>
+                    <Link href="https://telegram.org" target="_blank" rel="noopener noreferrer">
                       <Image src={tgLogo} alt="Telegram" width={16.66} height={15} />
-                    </a>
+                    </Link>
                   </div>
               </nav>
               <button className={styles.menuToggle} onClick={toggleDropdown}>

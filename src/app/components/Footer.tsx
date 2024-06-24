@@ -1,12 +1,11 @@
 import React,{useRef , useEffect, useState} from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
-import footerLogo from '../assets/footer/logo.png'
-import twitterLogo from '../assets/twitter.png'
-import tgLogo from '../assets/telegram.png'
-import gitLogo from '../assets/github.png'
-import mediumLogo from '../assets/medium.png'
-import footerLogoFull from '../assets/footer/footer_logo_full.svg'
+import footerLogo from '../assets/footer/logo_footer.svg'
+import twitterLogo from '../assets/footer/twitter_footer.svg'
+import tgLogo from '../assets/footer/tg_footer.svg'
+import gitLogo from '../assets/footer/github_footer.svg'
+import mediumLogo from '../assets/footer/medium_footer.svg'
 
 const Footer = () => {
   const linkElementRef = useRef<HTMLDivElement>(null);
