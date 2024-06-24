@@ -39,11 +39,11 @@ const Header = () => {
         </div>
         <div className="flex-custom-1-65 flex justify-center items-center">
           <nav className={`${styles.mainNav} ${isDropdownOpen ? styles.open : ''}`}>
-            <Link className={styles.linkAnimation} href="#concept">CONCEPT</Link>
-            <Link className={styles.linkAnimation}  href="#features">FEATURES</Link>
-            <Link className={styles.linkAnimation}  href="#about">ABOUT</Link>
-            <Link className={styles.linkAnimation}  href="#tokenomics">TOKENOMICS</Link>
-            <Link className={styles.linkAnimation}  href="#roadmap">ROADMAP</Link>
+            <Link className={styles.linkAnimation}  href="https://www.armorwallet.ai/concept">CONCEPT</Link>
+            <Link className={styles.linkAnimation}  href="https://www.armorwallet.ai/features">FEATURES</Link>
+            <Link className={styles.linkAnimation} style={{whiteSpace:"nowrap"}}  href="https://www.armorwallet.ai/armor-ai">ARMOR AI</Link>
+            <Link className={styles.linkAnimation}  href="https://www.armorwallet.ai/about">ABOUT</Link>
+            <Link className={styles.linkAnimation}  href="https://www.armorwallet.ai/tokenomics">TOKENOMICS</Link>
           </nav>
         </div>
         <div className="flex-custom-1 flex justify-center items-center">
@@ -73,11 +73,11 @@ const Header = () => {
                 <Image src={logo} alt="brand-logo" style={{ width: '11.64585rem', height: '3.012rem'}} loading='lazy'/>
               </div>
               <nav className={`${styles.mainNav} ${isDropdownOpen ? styles.open : ''}`}>
-                <Link className={styles.linkAnimation} href="#concept">CONCEPT</Link>
-                <Link className={styles.linkAnimation}  href="#features">FEATURES</Link>
-                <Link className={styles.linkAnimation}  href="#about">ABOUT</Link>
-                <Link className={styles.linkAnimation}  href="#tokenomics">TOKENOMICS</Link>
-                <Link className={styles.linkAnimation}  href="#roadmap">ROADMAP</Link>
+                <Link className={styles.linkAnimation} href="https://www.armorwallet.ai/concept">CONCEPT</Link>
+                <Link className={styles.linkAnimation}  href="https://www.armorwallet.ai/features">FEATURES</Link>
+                <Link className={styles.linkAnimation} style={{whiteSpace:"nowrap"}}  href="https://www.armorwallet.ai/armor-ai">ARMOR AI</Link>
+                <Link className={styles.linkAnimation}  href="https://www.armorwallet.ai/about">ABOUT</Link>
+                <Link className={styles.linkAnimation}  href="https://www.armorwallet.ai/tokenomics">TOKENOMICS</Link>
                 <div className={styles.socialLinks}>
                     <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer">
                       <Image src={twitterLogo} alt="Twitter" width={18.75} height={15} />

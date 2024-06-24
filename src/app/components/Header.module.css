@@ -1,7 +1,7 @@
 /* Header.module.css */
 .mainNav {
   display: flex;
-  gap: 1.563rem;
+  gap: 1.25rem;
   transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   overflow: hidden;
   max-height: 0;
@@ -37,10 +37,10 @@
 
 .linkAnimation {
   display: inline-block;
-  padding: 0.4rem;
   text-decoration: none;
   color: black;
   transition: color 0.3s ease-out;
+  padding: 0.4rem;
 }
 
 .linkAnimation:hover {
