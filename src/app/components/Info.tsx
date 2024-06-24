@@ -1,7 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react'
 import styles from './Info.module.css'
 
-const Info = () => {
+interface InfoProps {
+  setBtnDistanceFromTop: (newValue: number | null) => void;
+  setRenderBtns: (newValue: boolean) => void;
+}
+
+const Info = ({setBtnDistanceFromTop,setRenderBtns}:InfoProps) => {
   const topPromptElementRef = useRef<HTMLDivElement>(null);
   const [heightTopPrompt, setHeightTopPrompt] = useState(0);
   const contentElementRef = useRef<HTMLDivElement>(null);
@@ -11,6 +16,8 @@ const Info = () => {
   const textRef = useRef<(HTMLSpanElement | null)[]>([]);
   const [linePosition, setLinePosition] = useState(0);
   const [textVisible, setTextVisible] = useState(false);
+
+  const btnComponentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (topPromptElementRef.current) {
@@ -22,6 +29,14 @@ const Info = () => {
     if(lineRef.current)
     {
       lineRef.current.classList.add(styles.animated);
+    }
+
+    if (btnComponentRef.current) {
+      const rect = btnComponentRef.current.getBoundingClientRect();
+      if(rect.top + window.scrollY > 0){
+        setBtnDistanceFromTop(rect.top + window.scrollY); 
+        setRenderBtns(true);
+      }
     }
   }, []);
 
@@ -116,11 +131,11 @@ const Info = () => {
               {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
                   
               </span> */}
-              <span className="mx-2 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',color:"#7A7A7A", fontSize:"1.125rem",fontWeight:"400"}}>
+              <span  className="mx-2 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',color:"#7A7A7A", fontSize:"1.125rem",fontWeight:"400"}}>
                   02
               </span>
               </div>
-              <div
+              <div ref={btnComponentRef} 
               style={{
                   width: '2px',
                   height: `${heightContent}px`,

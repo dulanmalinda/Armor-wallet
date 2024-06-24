@@ -67,15 +67,15 @@ const Writeprompt = ({walletAddress,fetchPrompts,setUserPromptCount,baseApiURL} 
               }}
               />
           </div>
-          <div className="ml-4 mt-2 sm:mt-0" ref={contentElementRef}>
+          <div className="ml-4 mt-2 sm:mt-1" ref={contentElementRef}>
             <div className="flex items-center mb-3">
               <span style={{fontSize:"1rem",fontWeight:"400"}}>
                 Submit a Prompt
               </span>
             </div>
 
-            <button onClick={togglePopUp} className="bg-[#BDFF6A] font-bold py-2 px-4 rounded pl-20 pr-20  disabled:bg-opacity-50" disabled={!walletAddress || promptSubmittedTomax}>
-              <span> + </span>
+            <button onClick={togglePopUp} style={{fontSize:"1.875rem",width:"10.66rem",height:"3rem"}}  className="bg-[#BDFF6A] rounded disabled:bg-opacity-50 disabled:opacity-50"disabled={!walletAddress || promptSubmittedTomax}>
+              +
             </button>
           </div>
         </div>

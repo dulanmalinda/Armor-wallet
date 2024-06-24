@@ -6,8 +6,8 @@ import { createWallet} from "thirdweb/wallets";
 import { createThirdwebClient,defineChain } from "thirdweb";
 import { useActiveAccount } from "thirdweb/react";
 import Image from 'next/image'
-import connectCircle from '../assets/connectCircle.png'
-import connectTick from '../assets/connectedTick.png'
+import connectCircle from '../assets/walletConnect/circle_walletConnect.svg'
+import connectTick from '../assets/walletConnect/tick_walletConnect.svg'
 
 interface WalletconnectProps {
   setWalletAddress: (newValue: string | null) => void;
@@ -68,11 +68,22 @@ const Walletconnect = ({ setWalletAddress,baseApiURL}: WalletconnectProps) => {
 
   const customRender = () => {
     return (
-      <button className='flex' style={{backgroundColor:"#BDFF6A", paddingLeft:"1rem", paddingRight:"1rem",  paddingTop:"1rem",paddingBottom:"1rem",borderRadius:"1px", alignItems:"center"}}>
-        <Image src={connectTick} alt="connected tick" layout="responsive" style={{width:"1.25rem",height:"1.25rem",marginRight:"0.5rem"}} loading='lazy' className='hideOnMobile'/>
+      <button className='flex' 
+          style={{
+            backgroundColor:"#BDFF6A", 
+            fontSize:"1rem",
+            width:"10.66rem",
+            height:"3rem",
+            borderRadius:"1px", 
+            alignItems:"center",
+            justifyContent:"center",
+            fontWeight:"600"
+          }}
+        >
           {
-            activeAccount?.address ? truncateText(activeAccount.address,10) : ""
+            activeAccount?.address ? truncateText(activeAccount.address,8) : ""
           }  
+        <Image src={connectTick} alt="connected tick" style={{marginLeft:"0.5rem"}} loading='lazy' />
       </button>
     );
   };
@@ -91,7 +102,7 @@ const Walletconnect = ({ setWalletAddress,baseApiURL}: WalletconnectProps) => {
               {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
                   
               </span> */}
-              <span className="mx-2 hideOnMobile" style={{width:"0.938rem",height:"0.938rem"}}>
+              <span className="sm:mt-2 hideOnMobile" style={{width:"0.938rem",height:"0.938rem"}}>
                 <Image src={connectCircle} alt="connect circle" layout="responsive" loading='lazy'/>
               </span>
               </div>
@@ -106,10 +117,10 @@ const Walletconnect = ({ setWalletAddress,baseApiURL}: WalletconnectProps) => {
               }}
               />
           </div>
-          <div className="mt-2 sm:mt-0" ref={contentElementRef}>
+          <div className="mt-2 sm:mt-1" ref={contentElementRef}>
             <div className="flex items-center mb-3">
               <span style={{fontSize:"1rem",fontWeight:"400"}}>
-                Wallet
+                Connect your wallet
               </span>
             </div>
             <ConnectButton
@@ -119,7 +130,10 @@ const Walletconnect = ({ setWalletAddress,baseApiURL}: WalletconnectProps) => {
                   style: {
                     borderRadius: "1px",
                     backgroundColor: "transparent",
-                    outline: "1px solid black"
+                    outline: "1px solid black",
+                    fontSize:"1rem",
+                    width:"10.66rem",
+                    height:"3rem"
                   },
                 }}
                 

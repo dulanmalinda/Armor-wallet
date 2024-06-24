@@ -9,7 +9,7 @@ import Info from './components/Info'
 import { createWallet, inAppWallet } from "thirdweb/wallets";
 import { createThirdwebClient } from "thirdweb";
 
-import { useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 const apiURL = "http://51.158.125.49/api/";
 
@@ -18,6 +18,9 @@ const Page = () => {
   const [prompts, setPrompts] = useState<any[]>([]);
 
   const [userSubmittedPromptCount, setUserSubmittedPromptCount] = useState<number | null>(null);
+
+  const [btnDistanceFromTop, setBtnDistanceFromTop] = useState<number | null>(0);
+  const [renderBtns, setRenderBtns] = useState<boolean>(false);
 
   const wallets = [
     inAppWallet(),
@@ -58,13 +61,17 @@ const Page = () => {
       
       <div className="flex hideOnMobile min-h-screen">
         <div className="flex-custom-1-2 flex justify-end">
-          <div style={{marginTop:"20vh"}}>
-            <Walletconnect setWalletAddress={setWalletAddress} baseApiURL={apiURL} />
+          <div style={{position:"absolute",top:`${btnDistanceFromTop}px`}}>
+            {
+              renderBtns? 
+              <Walletconnect setWalletAddress={setWalletAddress} baseApiURL={apiURL} />
+              : ''
+            }
           </div>
         </div>
-        <div className="flex-custom-2-3 ">
+        <div className="flex-custom-2-3">
           
-          <Info></Info>
+          <Info setBtnDistanceFromTop={setBtnDistanceFromTop} setRenderBtns={setRenderBtns}></Info>
 
           <div className="">
               <div className='w-full'>
@@ -87,15 +94,19 @@ const Page = () => {
 
         </div>
         <div className="flex-custom-1-2 flex justify-start">
-          <div style={{marginTop:"20vh", paddingLeft:"3vw"}}>
-            <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={apiURL} setUserPromptCount={setUserSubmittedPromptCount} />
+          <div style={{position:"absolute",top:`${btnDistanceFromTop}px`, paddingLeft:"3vw"}}>
+            {
+              renderBtns?
+              <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={apiURL} setUserPromptCount={setUserSubmittedPromptCount} /> 
+              :''
+            }
           </div>
         </div>
       </div>
 
       <div className="flex-1 flex flex-col gap-4 p-4 hideOnDesktop">
 
-          <Info></Info>
+          <Info setBtnDistanceFromTop={setBtnDistanceFromTop} setRenderBtns={setRenderBtns}></Info>
 
           <div className="grid grid-cols-2 gap-4 h-24 ">
             <div className="flex items-center justify-center">

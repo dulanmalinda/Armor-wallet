@@ -30,7 +30,7 @@ const Footer = () => {
         <div className="flex-custom-1-2">
           <Image src={footerLogo} alt="Logo" style={{ width: '2.85rem', height: '2.85rem'}} className='mr-12 logo-left-margins'/>
         </div>
-        <div className="flex-custom-1-9">
+        <div className="flex-custom-2-1">
 
           <div className="flex flex-col sm:flex-row items-start pl-4 pb-4 max-w-full sm:max-w-3xl">
             <div className="flex-shrink-0 flex flex-col sm:flex-row items-start ">
