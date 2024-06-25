@@ -22,7 +22,7 @@ const Info = ({setBtnDistanceFromTop,setRenderBtns,isDesktop}:InfoProps) => {
 
   useEffect(() => {
     if (topPromptElementRef.current) {
-      setHeightTopPrompt(topPromptElementRef.current.offsetHeight);
+      setHeightTopPrompt(topPromptElementRef.current.offsetHeight + 15);
     }
     if (contentElementRef.current) {
       setHeightContent(contentElementRef.current.offsetHeight + 40);
