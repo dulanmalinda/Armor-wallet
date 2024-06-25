@@ -34,8 +34,9 @@ const Info = ({setBtnDistanceFromTop,setRenderBtns,isDesktop}:InfoProps) => {
 
     if (btnComponentRef.current) {
       const rect = btnComponentRef.current.getBoundingClientRect();
-      if(rect.top + window.scrollY > 0 && isDesktop){
-        setBtnDistanceFromTop(rect.top + window.scrollY); 
+      if(rect.bottom + window.scrollY > 0 && isDesktop){
+        console.log(rect.bottom + window.scrollY);
+        setBtnDistanceFromTop(rect.bottom + window.scrollY - 9); 
         setRenderBtns(true);
       }
     }
@@ -132,7 +133,7 @@ const Info = ({setBtnDistanceFromTop,setRenderBtns,isDesktop}:InfoProps) => {
               {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
                   
               </span> */}
-              <span  ref={btnComponentRef}  className="mx-2 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',color:"#7A7A7A", fontSize:"1.125rem",fontWeight:"400"}}>
+              <span ref={btnComponentRef} className="mx-2 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',color:"#7A7A7A", fontSize:"1.125rem",fontWeight:"400"}}>
                   02
               </span>
               </div>
