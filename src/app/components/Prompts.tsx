@@ -13,18 +13,25 @@ interface PromptsProps {
     id: string | null;
     upVoteCount: number | null;
     downVoteCount: number | null;
-    didUserVoted:boolean
+    didUserUpVoted:boolean;
+    didUserDownVoted:boolean;
+    userVotedCount: number;
     fetchPrompts:() =>void;
+    setvotedCount: (newValue: number) => void;
     baseApiURL: string;
   }
 
-const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,downVoteCount,didUserVoted,fetchPrompts,baseApiURL} : PromptsProps) => {
+const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,downVoteCount,didUserUpVoted,didUserDownVoted,userVotedCount,fetchPrompts,setvotedCount,baseApiURL} : PromptsProps) => {
 
     const [upVoteSignature, setUpVoteSignature] = useState<String>("");
     const [downVoteSignature, setDownVoteSignature] = useState<String>("");
+    const [upVoteRemoveSignature, setUpVoteRemoveSignature] = useState<String>("");
+    const [downVoteRemoveSignature, setDownVoteRemoveSignature] = useState<String>("");
 
     const contentElementRef = useRef<HTMLDivElement>(null);
     const [heightContent, setHeightContent] = useState(0);
+
+    const [isUsersPrompt, setIsUsersPrompt] = useState<boolean>(true);
 
     const activeAccount = useActiveAccount();
 
@@ -39,14 +46,20 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
     };
 
     const signUpVote = () => {
-        if(!didUserVoted && userWalletAddress){
+        if(!didUserUpVoted && !didUserDownVoted && userWalletAddress && !isUsersPrompt && userVotedCount < 20){
             signVote(true);
+        }
+        else if(didUserUpVoted){
+            signRemoveVote(true);
         }
     }
 
     const signDownVote = () =>{
-        if(!didUserVoted && userWalletAddress){
+        if(!didUserUpVoted && !didUserDownVoted && userWalletAddress && !isUsersPrompt && userVotedCount < 20){
             signVote(false);
+        }
+        else if(didUserDownVoted){
+            signRemoveVote(false);
         }
     }
     
@@ -62,7 +75,6 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
               });
           
               const data = await res.json();
-              console.log(data);
         }
         else
         {
@@ -75,10 +87,9 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
               });
           
               const data = await res.json();
-              console.log(data);
         }
 
-        fetchPrompts();
+        updateUserVoteCount(true);
     }
 
     const signVote = async (isUpVote:boolean) => {    
@@ -129,11 +140,123 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
         }
     }, [upVoteSignature,downVoteSignature]);
 
+    const onRemoveVoteSigned = async (isUpVote:boolean) => {
+        if(isUpVote)
+        {
+            const res = await fetch(`${baseApiURL}prompts/${id}/remove-vote`, {
+                method: 'PATCH',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ "voteType":"upvote","votedWalletAddress":userWalletAddress}),
+              });
+          
+              const data = await res.json();
+        }
+        else
+        {
+            const res = await fetch(`${baseApiURL}prompts/${id}/remove-vote`, {
+                method: 'PATCH',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ "voteType":"downvote","votedWalletAddress":userWalletAddress}),
+              });
+          
+              const data = await res.json();
+        }
+
+        updateUserVoteCount(false);
+    }
+
+    const signRemoveVote = async (isUpVote:boolean) => {    
+        if(isUpVote)
+        {
+            try {
+                    const signature = await activeAccount?.signMessage({message:"confirm revoke up vote"});
+            
+                    console.log("Signature:", signature);
+                    if(signature)
+                    {
+                        setUpVoteRemoveSignature(signature?.toString());
+                    }
+      
+                } 
+            catch (error) 
+                {
+                    console.error("Error signing message:", error);
+                }
+        }
+        else
+        {
+            try {
+                const signature = await activeAccount?.signMessage({message:"confirm revoke down vote"});
+        
+                console.log("Signature:", signature);
+                if(signature)
+                {
+                    setDownVoteRemoveSignature(signature?.toString());
+                }
+  
+            } 
+        catch (error) 
+            {
+                console.error("Error signing message:", error);
+            }
+        }
+      }
+
+
+      const updateUserVoteCount = async (isIncrement:boolean) => {
+        if(isIncrement)
+        {
+            const res = await fetch(`${baseApiURL}user/increment-vote?walletAddress=${userWalletAddress}`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              });
+          
+              const data = await res.json();
+              setvotedCount(data.voteCount);
+        }
+        else
+        {
+            const res = await fetch(`${baseApiURL}user/decrement-vote?walletAddress=${userWalletAddress}`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              });
+          
+              const data = await res.json();
+              setvotedCount(data.voteCount);
+        }
+
+        fetchPrompts();
+    }
+
+      useEffect(() => {
+        if (upVoteRemoveSignature != "") {
+            onRemoveVoteSigned(true);
+            setUpVoteRemoveSignature("");
+        }
+        if (downVoteRemoveSignature != "") {
+            onRemoveVoteSigned(false);
+            setDownVoteRemoveSignature("");
+        }
+    }, [upVoteRemoveSignature,downVoteRemoveSignature]);
+
     useEffect(() => {
         if (contentElementRef.current) {
           setHeightContent(contentElementRef.current.offsetHeight + 30);
         }
       }, []);
+
+    useEffect(()=>{
+        console.log(userWalletAddress == authorsWalletAddress);
+        setIsUsersPrompt(userWalletAddress == authorsWalletAddress);
+    },[userWalletAddress]);
 
 
   return (
@@ -145,11 +268,11 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
                         
                     </div>
                     <div className="w-5 h-5 mb-1 sm:mb-0 cursor-pointer" style={{marginRight:"0.2rem"}} >
-                        <button className="w-5 h-5 mb-1 sm:mb-0 cursor-pointer" onClick={signUpVote} style={{marginRight:"0.2rem"}}>
-                            <Image src={upArrowBlack} alt="Down arrow" layout="responsive" className={(didUserVoted || !userWalletAddress) ? 'opacity-50' : ''}/>
+                        <button className="w-6 h-6 mb-1 sm:mb-0 cursor-pointer" onClick={signUpVote}>
+                            <Image src={didUserUpVoted?upArrowGreen:upArrowBlack} alt="Down arrow" className={(!userWalletAddress || isUsersPrompt) ? 'opacity-50' : ''}/>
                         </button>
-                        <button className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" onClick={signDownVote}>
-                            <Image src={downArrowBlack} alt="Up arrow" layout="responsive" className={(didUserVoted || !userWalletAddress) ? 'opacity-50' : ''}/>
+                        <button className="w-5 h-5 mb-1 sm:mb-0 cursor-pointer" onClick={signDownVote}>
+                            <Image src={didUserDownVoted?downArrowRed:downArrowBlack} alt="Up arrow" className={(!userWalletAddress || isUsersPrompt) ? 'opacity-50' : ''}/>
                         </button>
                     </div>
                     {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
@@ -162,10 +285,10 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
 
                 <div className="flex items-center hideOnDesktop">
                     <button className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" onClick={signDownVote}>
-                        <Image src={downArrowBlack} alt="Up arrow" layout="responsive" className={(didUserVoted || !userWalletAddress) ? 'opacity-50' : ''}/>
+                        <Image src={didUserUpVoted?downArrowRed:downArrowBlack} alt="Up arrow" layout="responsive" className={(!userWalletAddress) ? 'opacity-50' : ''}/>
                     </button>
                     <button className="w-5 h-5 mb-1 sm:mb-0 cursor-pointer" onClick={signUpVote} style={{marginRight:"0.2rem"}}>
-                        <Image src={upArrowBlack} alt="Down arrow" layout="responsive" className={(didUserVoted || !userWalletAddress) ? 'opacity-50' : ''}/>
+                        <Image src={didUserDownVoted?upArrowGreen:upArrowBlack}alt="Down arrow" layout="responsive" className={(!userWalletAddress) ? 'opacity-50' : ''}/>
                     </button>
                     <span className="mx-1 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',fontSize:"1rem",fontWeight:"900"}}>
                         {upVoteCount}

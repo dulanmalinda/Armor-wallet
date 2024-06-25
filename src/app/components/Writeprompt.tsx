@@ -7,10 +7,11 @@ interface WritepromptProps {
   walletAddress: string | null;
   fetchPrompts:() =>void;
   setUserPromptCount: (newValue: number | null) => void;
+  setUserVotedCount: (newValue: number) => void;
   baseApiURL:string;
 }
 
-const Writeprompt = ({walletAddress,fetchPrompts,setUserPromptCount,baseApiURL} : WritepromptProps) => {
+const Writeprompt = ({walletAddress,fetchPrompts,setUserPromptCount,setUserVotedCount,baseApiURL} : WritepromptProps) => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [promptSubmittedTomax, setpromptSubmittedTomax] = useState<boolean>(true);
 
@@ -27,6 +28,7 @@ const Writeprompt = ({walletAddress,fetchPrompts,setUserPromptCount,baseApiURL} 
         .then((data) => {
 
             setUserPromptCount(data.promptsCount)
+            setUserVotedCount(data.voteCount)
 
             if(data.promptsCount >= 20) //Here sets the max prompts count
             {

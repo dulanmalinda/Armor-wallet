@@ -18,6 +18,7 @@ const Page = () => {
   const [prompts, setPrompts] = useState<any[]>([]);
 
   const [userSubmittedPromptCount, setUserSubmittedPromptCount] = useState<number | null>(null);
+  const [votedCount, setvotedCount] = useState<number>(0);
 
   const [btnDistanceFromTop, setBtnDistanceFromTop] = useState<number | null>(0);
   const [renderBtns, setRenderBtns] = useState<boolean>(false);
@@ -41,8 +42,17 @@ const Page = () => {
       });
   };
 
-  const didUserVoted = (votedWallets:Array<string>) =>{
-    for (let e of votedWallets) {
+  const didUserUpVoted = (upVotedWallets:Array<string>) =>{
+    for (let e of upVotedWallets) {
+      if (e == walletAddress) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  const didUserDownVoted = (downVotedWallets:Array<string>) =>{
+    for (let e of downVotedWallets) {
       if (e == walletAddress) {
         return true;
       }
@@ -85,7 +95,10 @@ const Page = () => {
                             upVoteCount={prompt.upVoteCount}
                             downVoteCount={prompt.downVoteCount}
                             fetchPrompts={fetchPrompts}
-                            didUserVoted={didUserVoted(prompt.votedWallets)}
+                            didUserUpVoted={didUserUpVoted(prompt.upVotedWallets)}
+                            didUserDownVoted={didUserDownVoted(prompt.downVotedWallets)}
+                            userVotedCount={votedCount}
+                            setvotedCount={setvotedCount}
                             baseApiURL={apiURL}
                         />
                     ))}
@@ -97,7 +110,7 @@ const Page = () => {
           <div style={{position:"absolute",top:`${btnDistanceFromTop}px`, paddingLeft:"3vw"}}>
             {
               renderBtns?
-              <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={apiURL} setUserPromptCount={setUserSubmittedPromptCount} /> 
+              <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={apiURL} setUserPromptCount={setUserSubmittedPromptCount} setUserVotedCount={setvotedCount} /> 
               :''
             }
           </div>
@@ -113,7 +126,7 @@ const Page = () => {
               <Walletconnect setWalletAddress={setWalletAddress} baseApiURL={apiURL} />
             </div>
             <div className="flex items-center justify-center">
-              <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={apiURL} setUserPromptCount={setUserSubmittedPromptCount}/>
+              <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={apiURL} setUserPromptCount={setUserSubmittedPromptCount} setUserVotedCount={setvotedCount}/>
             </div>
           </div>
           <div className="">
@@ -128,7 +141,10 @@ const Page = () => {
                               upVoteCount={prompt.upVoteCount}
                               downVoteCount={prompt.downVoteCount}
                               fetchPrompts={fetchPrompts}
-                              didUserVoted={didUserVoted(prompt.votedWallets)}
+                              didUserUpVoted={didUserUpVoted(prompt.upVotedWallets)}
+                              didUserDownVoted={didUserDownVoted(prompt.downVotedWallets)}
+                              userVotedCount={votedCount}
+                              setvotedCount={setvotedCount}
                               baseApiURL = {apiURL}
                           />
                       ))}
