@@ -149,7 +149,7 @@ const Info = ({setBtnDistanceFromTop,setRenderBtns,isDesktop}:InfoProps) => {
           <div className="ml-4 mt-2 sm:mt-0" ref={contentElementRef}>
               <div className="flex items-Start">
                 <span style={{marginTop:"-0.1rem",fontSize:"1.375rem",lineHeight:"1.664rem",fontWeight:"400"}}>
-                  Vote on the best (and worst) AI trading prompts that you would want to use in Armor Wallet. Connect your wallet to submit a prompt and then to vote on other prompts. 1 vote per wallet.
+                  Vote on the best (and worst) AI trading prompts that you would want to use in Armor Wallet. Connect your wallet to submit a prompt and then to vote on other prompts. 20 votes and prompts per wallet.
                 </span>
               </div>
           </div>
