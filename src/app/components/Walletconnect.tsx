@@ -83,7 +83,7 @@ const Walletconnect = ({ setWalletAddress,baseApiURL}: WalletconnectProps) => {
           {
             activeAccount?.address ? truncateText(activeAccount.address,8) : ""
           }  
-        <Image src={connectTick} alt="connected tick" style={{marginLeft:"0.5rem"}} loading='lazy' />
+        <Image src={connectTick} alt="wallet connected tick" style={{marginLeft:"0.5rem"}} />
       </button>
     );
   };

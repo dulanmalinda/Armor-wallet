@@ -15,6 +15,15 @@ import usePolling from './components/CustomHooks/usePolling';
 
 const apiURL = "http://51.158.125.49/api/";
 
+interface Prompt {
+  walletAddress: string;
+  prompt: string;
+  upVoteCount: number;
+  downVoteCount: number;
+  upVotedWallets: string[];
+  downVotedWallets: string[];
+}
+
 const Page = () => {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [prompts, setPrompts] = useState<any[]>([]);
@@ -37,12 +46,32 @@ const Page = () => {
   const client = createThirdwebClient({
     clientId: "906393bcf3a603cdaf81ad7dbf23fffc",
   });
+
+  const sortPromptsByWallet = (prompts: Prompt[], userwallet: string): Prompt[] => {
+    return prompts.sort((a, b) => {
+      if (a.walletAddress == userwallet && b.walletAddress != userwallet) {
+        return -1;
+      }
+      if (a.walletAddress != userwallet && b.walletAddress == userwallet) {
+        return 1; 
+      }
+      return 0; 
+    });
+  };
   
   const fetchPrompts = () => {
     fetch(`${apiURL}getPrompts`)
       .then((response) => response.json())
       .then((data) => {
-        setPrompts(data);
+        if(walletAddress)
+        {
+          const sortedData = sortPromptsByWallet(data, walletAddress);
+          setPrompts(sortedData);
+        }
+        else
+        {
+          setPrompts(data);
+        }
       });
   };
 
@@ -68,9 +97,16 @@ const Page = () => {
     fetchPrompts();
   },[]);
 
-  if (loading) {
-    console.log("loading");
-  }
+  useEffect(() => {
+    if(walletAddress){
+      const sortedData = sortPromptsByWallet(prompts, walletAddress);
+      setPrompts(sortedData);
+    }
+    else{
+      fetchPrompts();
+    }
+  },[walletAddress]);
+
 
   if (error) {
     console.log(error.message);

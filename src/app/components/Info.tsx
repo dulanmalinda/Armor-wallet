@@ -35,7 +35,6 @@ const Info = ({setBtnDistanceFromTop,setRenderBtns,isDesktop}:InfoProps) => {
     if (btnComponentRef.current) {
       const rect = btnComponentRef.current.getBoundingClientRect();
       if(rect.bottom + window.scrollY > 0 && isDesktop){
-        console.log(rect.bottom + window.scrollY);
         setBtnDistanceFromTop(rect.bottom + window.scrollY - 9); 
         setRenderBtns(true);
       }
@@ -63,7 +62,6 @@ const Info = ({setBtnDistanceFromTop,setRenderBtns,isDesktop}:InfoProps) => {
 
     useEffect(() => {
       if (textVisible) {
-        console.log(textVisible);
         textRef.current.forEach((letter) => {
           if (letter && letter.getBoundingClientRect().right > linePosition) {
             letter.classList.add(styles.visible);

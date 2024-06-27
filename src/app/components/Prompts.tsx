@@ -31,22 +31,23 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
     const contentElementRef = useRef<HTMLDivElement>(null);
     const [heightContent, setHeightContent] = useState(0);
 
-    const [isUsersPrompt, setIsUsersPrompt] = useState<boolean>(true);
-
     const activeAccount = useActiveAccount();
 
     const truncateText = (text: string, maxLength: number) => {
-        if (text.length > maxLength) {
-            const halfLength = Math.floor(maxLength / 2);
-            const firstHalf = text.substring(0, halfLength);
-            const secondHalf = text.substring(text.length - halfLength);
-            return firstHalf + '...' + secondHalf;
+        if(text != "My Submission")
+        {
+            if (text.length > maxLength) {
+                const halfLength = Math.floor(maxLength / 2);
+                const firstHalf = text.substring(0, halfLength);
+                const secondHalf = text.substring(text.length - halfLength);
+                return firstHalf + '...' + secondHalf;
+            }
         }
         return text;
     };
 
     const signUpVote = () => {
-        if(!didUserUpVoted && !didUserDownVoted && userWalletAddress && !isUsersPrompt && userVotedCount < 20){
+        if(!didUserUpVoted && !didUserDownVoted && userWalletAddress && userVotedCount < 20 && (userWalletAddress != authorsWalletAddress)){
             signVote(true);
         }
         else if(didUserUpVoted){
@@ -55,7 +56,7 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
     }
 
     const signDownVote = () =>{
-        if(!didUserUpVoted && !didUserDownVoted && userWalletAddress && !isUsersPrompt && userVotedCount < 20){
+        if(!didUserUpVoted && !didUserDownVoted && userWalletAddress && userVotedCount < 20 && (userWalletAddress != authorsWalletAddress)){
             signVote(false);
         }
         else if(didUserDownVoted){
@@ -253,11 +254,6 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
         }
       }, []);
 
-    useEffect(()=>{
-        console.log(userWalletAddress == authorsWalletAddress);
-        setIsUsersPrompt(userWalletAddress == authorsWalletAddress);
-    },[userWalletAddress]);
-
 
   return (
        <div className="flex flex-col sm:flex-row items-start p-4 max-w-full sm:max-w-3xl">
@@ -267,12 +263,12 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
                     <div className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" >
                         
                     </div>
-                    <div className="w-5 h-5 mb-1 sm:mb-0 cursor-pointer" style={{marginRight:"0.2rem"}} >
-                        <button className="w-6 h-6 mb-1 sm:mb-0 cursor-pointer" onClick={signUpVote}>
-                            <Image src={didUserUpVoted?upArrowGreen:upArrowBlack} alt="Down arrow" className={(!userWalletAddress || isUsersPrompt) ? 'opacity-50' : ''}/>
+                    <div className="w-5 h-5 mb-1 sm:mb-0 " style={{marginRight:"0.2rem"}} >
+                        <button className={`w-6 h-6 mb-1 sm:mb-0  ${(userWalletAddress == authorsWalletAddress)?'invisible':'cursor-pointer'}`} onClick={signUpVote}>
+                            <Image src={didUserUpVoted?upArrowGreen:upArrowBlack} alt="Down arrow" className={(!userWalletAddress) ? 'opacity-50' : ''}/>
                         </button>
-                        <button className="w-5 h-5 mb-1 sm:mb-0 cursor-pointer" onClick={signDownVote}>
-                            <Image src={didUserDownVoted?downArrowRed:downArrowBlack} alt="Up arrow" className={(!userWalletAddress || isUsersPrompt) ? 'opacity-50' : ''}/>
+                        <button className={`w-5 h-5 mb-1 sm:mb-0 ${(userWalletAddress == authorsWalletAddress)?'invisible':'cursor-pointer'}`} onClick={signDownVote}>
+                            <Image src={didUserDownVoted?downArrowRed:downArrowBlack} alt="Up arrow" className={(!userWalletAddress) ? 'opacity-50' : ''}/>
                         </button>
                     </div>
                     {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
@@ -284,10 +280,10 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
                 </div>
 
                 <div className="flex items-center hideOnDesktop">
-                    <button className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" onClick={signDownVote}>
+                    <button className={`w-5 h-5 mb-1 sm:mb-0 mr-2 ${(userWalletAddress == authorsWalletAddress)?'invisible':'cursor-pointer'}`} onClick={signDownVote}>
                         <Image src={didUserUpVoted?downArrowRed:downArrowBlack} alt="Up arrow" layout="responsive" className={(!userWalletAddress) ? 'opacity-50' : ''}/>
                     </button>
-                    <button className="w-5 h-5 mb-1 sm:mb-0 cursor-pointer" onClick={signUpVote} style={{marginRight:"0.2rem"}}>
+                    <button className={`w-5 h-5 mb-1 sm:mb-0 ${(userWalletAddress == authorsWalletAddress)?'invisible':'cursor-pointer'}`} onClick={signUpVote} style={{marginRight:"0.2rem"}}>
                         <Image src={didUserDownVoted?upArrowGreen:upArrowBlack}alt="Down arrow" layout="responsive" className={(!userWalletAddress) ? 'opacity-50' : ''}/>
                     </button>
                     <span className="mx-1 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',fontSize:"1rem",fontWeight:"900"}}>
@@ -313,7 +309,9 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
                 <div className="flex items-center">
                 <span style={{fontSize:"1rem",fontWeight:"400"}}>
                     {
-                        authorsWalletAddress ? truncateText(authorsWalletAddress,10) : ""
+                        (userWalletAddress != authorsWalletAddress)?
+                            (authorsWalletAddress ? truncateText(authorsWalletAddress,10) : ""):
+                        "My Submission"
                     }
                 </span>
                 </div>
