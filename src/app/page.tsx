@@ -11,6 +11,8 @@ import { createThirdwebClient } from "thirdweb";
 
 import { useRef, useEffect, useState } from 'react';
 
+import usePolling from './components/CustomHooks/usePolling';
+
 const apiURL = "http://51.158.125.49/api/";
 
 const Page = () => {
@@ -22,6 +24,8 @@ const Page = () => {
 
   const [btnDistanceFromTop, setBtnDistanceFromTop] = useState<number | null>(0);
   const [renderBtns, setRenderBtns] = useState<boolean>(false);
+
+  const { data, loading, error } = usePolling(`${apiURL}getPrompts`, 10000);
 
   const wallets = [
     inAppWallet(),
@@ -63,6 +67,19 @@ const Page = () => {
   useEffect(() => {
     fetchPrompts();
   },[]);
+
+  if (loading) {
+    console.log("loading");
+  }
+
+  if (error) {
+    console.log(error.message);
+  }
+
+  if(data.length > prompts.length)
+  {
+    fetchPrompts();
+  }
 
   return (
     <>
