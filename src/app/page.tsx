@@ -174,14 +174,10 @@ const Page = () => {
 
           <Info setBtnDistanceFromTop={setBtnDistanceFromTop} setRenderBtns={setRenderBtns} isDesktop={false}/>
 
-          <div className="grid grid-cols-2 gap-4 h-24 ">
-            <div className="flex items-center justify-center">
-              <Walletconnect setWalletAddress={setWalletAddress} baseApiURL={apiURL} />
-            </div>
-            <div className="flex items-center justify-center">
-              <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={apiURL} setUserPromptCount={setUserSubmittedPromptCount} setUserVotedCount={setvotedCount}/>
-            </div>
-          </div>
+          <Walletconnect setWalletAddress={setWalletAddress} baseApiURL={apiURL} />
+          
+          <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={apiURL} setUserPromptCount={setUserSubmittedPromptCount} setUserVotedCount={setvotedCount}/>
+            
           <div className="">
                 <div className='w-full'>
                       {prompts.map((prompt, index) => (

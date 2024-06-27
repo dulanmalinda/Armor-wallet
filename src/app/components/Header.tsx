@@ -35,7 +35,7 @@ const Header = () => {
 
       <div className="flex hideOnMobile" style={{height:"13.5vh"}}>
         <div className="flex-custom-1 flex items-center">
-          <Image src={logo} alt="brand-logo" style={{ width: '9.194rem', height: '2.363rem'}} className='logo-left-margins' loading='lazy'/>
+          <Image src={logo} alt="brand-logo" style={{ width: '9.194rem', height: '2.363rem'}} className='logo-left-margins'/>
         </div>
         <div className="flex-custom-1-65 flex justify-center items-center">
           <nav className={`${styles.mainNav} ${isDropdownOpen ? styles.open : ''}`}>
@@ -70,7 +70,7 @@ const Header = () => {
               paddingBottom: '2.188rem',
             }}>
               <div style={{ display: 'flex', alignItems: 'center', marginLeft: '1.75rem' }}>
-                <Image src={logo} alt="brand-logo" style={{ width: '11.64585rem', height: '3.012rem'}} loading='lazy'/>
+                <Image src={logo} alt="brand-logo" style={{ width: '13.6256445rem', height: '3.52404rem'}} />
               </div>
               <nav className={`${styles.mainNav} ${isDropdownOpen ? styles.open : ''}`}>
                 <Link className={styles.linkAnimation} href="https://www.armorwallet.ai/concept">CONCEPT</Link>

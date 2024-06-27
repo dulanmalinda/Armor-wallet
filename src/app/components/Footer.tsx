@@ -130,7 +130,7 @@ const Footer = () => {
               <div className="flex items-start">
                 <div className="ml-2 mt-1" style={{ fontSize: "0.75rem", lineHeight: "1.5rem", fontWeight: "550" }}>
                   <ul className="space-y-2">
-                    <li style={{ display: 'inline-block', fontSize: "1.25rem", fontWeight: "700" }}> Links</li>
+                    <li style={{ display: 'inline-block', fontSize: "1.25rem", fontWeight: "550" }}> Links</li>
                     <li><Link href="/features" className="hover:text-gray-900">Features</Link></li>
                     <li><Link href="/about" className="hover:text-gray-900">About</Link></li>
                     <li><Link href="/nfts" className="hover:text-gray-900">Codex NFT</Link></li>
@@ -168,7 +168,7 @@ const Footer = () => {
               <div className="flex items-start">
                 <div className="ml-2 mt-1" style={{ fontSize: "0.75rem", lineHeight: "1.5rem", fontWeight: "550" }}>
                   <ul className="space-y-4">
-                    <li style={{ display: 'inline-block', fontSize: "1.25rem", fontWeight: "700" }}> Socials</li>
+                    <li style={{ display: 'inline-block', fontSize: "1.25rem", fontWeight: "550" }}> Socials</li>
                     <li><Link href="https://twitter.com"><Image src={twitterLogo} alt="Twitter" style={{width:"1.688rem", height:"1.35"}} /></Link></li>
                     <li><Link href="https://github.com"><Image src={gitLogo} alt="GitHub" style={{width:"1.688rem", height:"1.35"}} /></Link></li>
                     <li><Link href="https://telegram.org"><Image src={tgLogo} alt="Telegram" style={{width:"1.688rem", height:"1.35"}} /></Link></li>

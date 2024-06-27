@@ -256,18 +256,18 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
 
 
   return (
-       <div className="flex flex-col sm:flex-row items-start p-4 max-w-full sm:max-w-3xl">
-            <div className="flex-shrink-0 flex flex-col sm:flex-row items-start">
+       <div className="flex flex-row items-start p-4 max-w-full sm:max-w-3xl">
+            <div className="flex-shrink-0 flex flex-row items-start">
 
-                <div className="flex items-center hideOnMobile">
-                    <div className="w-5 h-5 mb-1 sm:mb-0 mr-2 cursor-pointer" >
+                <div className="flex items-center">
+                    <div className="w-5 h-5 mb-0 mr-2 cursor-pointer hideOnMobile" >
                         
                     </div>
-                    <div className="w-5 h-5 mb-1 sm:mb-0 " style={{marginRight:"0.2rem"}} >
-                        <button className={`w-6 h-6 mb-1 sm:mb-0  ${(userWalletAddress == authorsWalletAddress)?'invisible':'cursor-pointer'}`} onClick={signUpVote}>
+                    <div className="w-5 h-5 mb-0 " style={{marginRight:"0.2rem"}} >
+                        <button className={`w-5 h-5 sm:w-6 sm:h-6 mb-1 sm:mb-0  ${(userWalletAddress == authorsWalletAddress)?'invisible':'cursor-pointer'}`} onClick={signUpVote}>
                             <Image src={didUserUpVoted?upArrowGreen:upArrowBlack} alt="Down arrow" className={(!userWalletAddress) ? 'opacity-50' : ''}/>
                         </button>
-                        <button className={`w-5 h-5 mb-1 sm:mb-0 ${(userWalletAddress == authorsWalletAddress)?'invisible':'cursor-pointer'}`} onClick={signDownVote}>
+                        <button className={`w-5 h-5 mb-0 ${(userWalletAddress == authorsWalletAddress)?'invisible':'cursor-pointer'}`} onClick={signDownVote}>
                             <Image src={didUserDownVoted?downArrowRed:downArrowBlack} alt="Up arrow" className={(!userWalletAddress) ? 'opacity-50' : ''}/>
                         </button>
                     </div>
@@ -279,23 +279,8 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
                     </span>
                 </div>
 
-                <div className="flex items-center hideOnDesktop">
-                    <button className={`w-5 h-5 mb-1 sm:mb-0 mr-2 ${(userWalletAddress == authorsWalletAddress)?'invisible':'cursor-pointer'}`} onClick={signDownVote}>
-                        <Image src={didUserUpVoted?downArrowRed:downArrowBlack} alt="Up arrow" layout="responsive" className={(!userWalletAddress) ? 'opacity-50' : ''}/>
-                    </button>
-                    <button className={`w-5 h-5 mb-1 sm:mb-0 ${(userWalletAddress == authorsWalletAddress)?'invisible':'cursor-pointer'}`} onClick={signUpVote} style={{marginRight:"0.2rem"}}>
-                        <Image src={didUserDownVoted?upArrowGreen:upArrowBlack}alt="Down arrow" layout="responsive" className={(!userWalletAddress) ? 'opacity-50' : ''}/>
-                    </button>
-                    <span className="mx-1 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',fontSize:"1rem",fontWeight:"900"}}>
-                        {upVoteCount}
-                    </span>
-                    {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2" style={{ width: '40px', display: 'inline-block', textAlign: 'right',color:"#fe195d" }}>
-                        {downVoteCount}
-                    </span> */}
-                </div>
-
                 <div
-                className="hidden sm:block"
+                className=""
                 style={{
                     width: '2px',
                     height: `${heightContent}px`,
@@ -305,7 +290,7 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
                 }}
                 />
             </div>
-            <div className="ml-4 mt-2 sm:mt-0" ref={contentElementRef}>
+            <div className="ml-4 mt-0" ref={contentElementRef}>
                 <div className="flex items-center">
                 <span style={{fontSize:"1rem",fontWeight:"400"}}>
                     {

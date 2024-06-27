@@ -34,20 +34,23 @@
   .title{
     font-size:4.5rem;
     font-weight: 400;
-    margin-top: -0.4rem;
     display: inline-block;
     line-height: 1;
   }
 
   @media (max-width: 1400px){
-
+    .title{
+      font-size:3.5rem;
+      font-weight: 400;
+      line-height: 1;
+    }
   }
   
   @media (max-width: 912px){
     .title{
       font-size:3.5rem;
       font-weight: 400;
-      margin-top: -1.4rem;
+      line-height: 1;
     }
 
     @keyframes moveLine {
