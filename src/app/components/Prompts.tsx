@@ -300,7 +300,7 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
                     }
                 </span>
                 </div>
-                <p className="mt-1 font-jetbrains-mono" style={{fontSize:"1rem",fontWeight:"700"}}>
+                <p className="mt-1 font-jetbrains-mono" style={{fontSize:"1.3rem",fontWeight:"700"}}>
                 {prompt}
                 </p>
             </div>

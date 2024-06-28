@@ -13,7 +13,7 @@ import { useRef, useEffect, useState } from 'react';
 
 import usePolling from './components/CustomHooks/usePolling';
 
-const apiURL = "http://51.158.125.49/api/";
+const apiURL = "https://prompt.armorwallet.ai/api/";
 
 interface Prompt {
   walletAddress: string;
