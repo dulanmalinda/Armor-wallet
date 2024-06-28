@@ -74,9 +74,8 @@ const Walletconnect = ({ setWalletAddress,baseApiURL}: WalletconnectProps) => {
 
   const customRender = () => {
     return (
-      <button className='flex' 
+      <button className='flex bg-[#BDFF6A] transition-colors duration-300 ease-in-out hover:bg-[#D9FFA3]' 
           style={{
-            backgroundColor:"#BDFF6A", 
             fontSize:"1rem",
             width:"10.66rem",
             height:"3rem",
@@ -132,14 +131,14 @@ const Walletconnect = ({ setWalletAddress,baseApiURL}: WalletconnectProps) => {
             <ConnectButton
                 connectButton={{
                   label: "Connect Wallet",
-                  className: "",
+                  className: "bg-[#FFFFFF] hover:bg-[#000000] hover:text-white",
                   style: {
                     borderRadius: "1px",
-                    backgroundColor: "transparent",
                     outline: "1px solid black",
                     fontSize:"1rem",
                     width:"10.66rem",
-                    height:"3rem"
+                    height:"3rem",
+                    transition: 'background-color 0.3s ease, color 0.3s ease'
                   },
                 }}
                 
@@ -149,8 +148,7 @@ const Walletconnect = ({ setWalletAddress,baseApiURL}: WalletconnectProps) => {
 
                 theme={darkTheme({
                   colors: {
-                      primaryButtonBg: "#BDFF6A",
-                      primaryButtonText: "black",
+                      primaryButtonBg: "#FFFFFF",
                     }
                 })}
 
@@ -227,14 +225,14 @@ const Walletconnect = ({ setWalletAddress,baseApiURL}: WalletconnectProps) => {
                 <ConnectButton
                 connectButton={{
                   label: "Connect Wallet",
-                  className: "",
+                  className: "bg-[#FFFFFF] hover:bg-[#000000] hover:text-white",
                   style: {
                     borderRadius: "1px",
-                    backgroundColor: "transparent",
                     outline: "1px solid black",
                     fontSize:"1rem",
                     width:"10.66rem",
-                    height:"3rem"
+                    height:"3rem",
+                    transition: 'background-color 0.3s ease, color 0.3s ease'
                   },
                 }}
                 
@@ -244,8 +242,7 @@ const Walletconnect = ({ setWalletAddress,baseApiURL}: WalletconnectProps) => {
 
                 theme={darkTheme({
                   colors: {
-                      primaryButtonBg: "#BDFF6A",
-                      primaryButtonText: "black",
+                      primaryButtonBg: "#FFFFFF",
                     }
                 })}
 

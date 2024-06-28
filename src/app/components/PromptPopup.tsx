@@ -166,7 +166,7 @@ useEffect(() => {
 
           <span onClick={(e) => e.stopPropagation()}>
             <button
-              className="mt-4 mr-4 bg-[#BDFF6A] px-4 py-2 disabled:opacity-50"
+              className={`mt-4 mr-4 bg-[#BDFF6A] ${(loading || promptInput == '')? "opacity-50": "transition-colors duration-300 ease-in-out hover:bg-[#D9FFA3]"} px-4 py-2`}
               onClick={handleSignMessage}
               style={{ width: '300px', fontSize: "1rem" }}
               disabled={loading || promptInput == ''}

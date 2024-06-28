@@ -27,8 +27,8 @@ const Header = () => {
           width: '100%',
           zIndex: '1000',
           fontWeight : '500'
-        }} className='hideOnMobile'>
-          <Link href="https://airdrop.armorwallet.ai/">
+        }} className=''>
+          <Link href="https://airdrop.armorwallet.ai/" className='button-enlarge-md'>
             CLICK HERE FOR ARMOR AIRDROP
           </Link>
         </div>
@@ -48,10 +48,10 @@ const Header = () => {
         </div>
         <div className="flex-custom-1 flex justify-center items-center">
           <div className={styles.socialLinks}>
-            <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" className='button-enlarge-md'>
               <Image src={twitterLogo} alt="Twitter" width={18.75} height={15} />
             </Link>
-            <Link href="https://telegram.org" target="_blank" rel="noopener noreferrer">
+            <Link href="https://telegram.org" target="_blank" rel="noopener noreferrer" className='button-enlarge-md'>
               <Image src={tgLogo} alt="Telegram" width={16.66} height={15} />
             </Link>
           </div>

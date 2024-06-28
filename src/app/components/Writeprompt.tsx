@@ -82,7 +82,7 @@ const Writeprompt = ({walletAddress,fetchPrompts,setUserPromptCount,setUserVoted
               </span>
             </div>
 
-            <button onClick={togglePopUp} style={{fontSize:"1.875rem",width:"10.66rem",height:"3rem"}}  className="bg-[#BDFF6A] rounded  disabled:opacity-50"disabled={!walletAddress || promptSubmittedTomax}>
+            <button onClick={togglePopUp} style={{fontSize:"1.875rem",width:"10.66rem",height:"3rem"}}  className={`bg-[#BDFF6A] ${(!walletAddress || promptSubmittedTomax) ? 'opacity-50' : 'transition-colors duration-300 ease-in-out hover:bg-[#D9FFA3]'} rounded `} disabled={!walletAddress || promptSubmittedTomax}>
               +
             </button>
           </div>
@@ -123,7 +123,7 @@ const Writeprompt = ({walletAddress,fetchPrompts,setUserPromptCount,setUserVoted
                   Submit a Prompt
                 </span>
                 </div>
-                  <button onClick={togglePopUp} style={{fontSize:"1.875rem",width:"10.66rem",height:"3rem"}}  className="bg-[#BDFF6A] rounded  disabled:opacity-50"disabled={!walletAddress || promptSubmittedTomax}>
+                  <button onClick={togglePopUp} style={{fontSize:"1.875rem",width:"10.66rem",height:"3rem"}} className={`bg-[#BDFF6A] ${(!walletAddress || promptSubmittedTomax) ? 'opacity-50' : 'transition-colors duration-300 ease-in-out hover:bg-[#D9FFA3]'} rounded `} disabled={!walletAddress || promptSubmittedTomax}>
                     +
                   </button>
             </div>

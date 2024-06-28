@@ -264,10 +264,10 @@ const Prompts = ({authorsWalletAddress,userWalletAddress,prompt,id,upVoteCount,d
                         
                     </div>
                     <div className="w-5 h-5 mb-0 " style={{marginRight:"0.2rem"}} >
-                        <button className={`w-5 h-5 sm:w-6 sm:h-6 mb-1 sm:mb-0  ${(userWalletAddress == authorsWalletAddress)?'invisible':'cursor-pointer'}`} onClick={signUpVote}>
+                        <button className={`w-5 h-5 sm:w-6 sm:h-6 mb-1 sm:mb-0 ${userWalletAddress ? "button-enlarge-md":""}  ${(userWalletAddress == authorsWalletAddress)?'invisible':'cursor-pointer'}`} onClick={signUpVote}>
                             <Image src={didUserUpVoted?upArrowGreen:upArrowBlack} alt="Down arrow" className={(!userWalletAddress) ? 'opacity-50' : ''}/>
                         </button>
-                        <button className={`w-5 h-5 mb-0 ${(userWalletAddress == authorsWalletAddress)?'invisible':'cursor-pointer'}`} onClick={signDownVote}>
+                        <button className={`w-5 h-5 mb-0 ${userWalletAddress ? "button-enlarge-md":""}  ${(userWalletAddress == authorsWalletAddress)?'invisible':'cursor-pointer'}`} onClick={signDownVote}>
                             <Image src={didUserDownVoted?downArrowRed:downArrowBlack} alt="Up arrow" className={(!userWalletAddress) ? 'opacity-50' : ''}/>
                         </button>
                     </div>
