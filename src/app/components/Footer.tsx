@@ -95,10 +95,10 @@ const Footer = () => {
             <div className="ml-4 mt-2 sm:mt-0" ref={linkElementRef}>
                 <div className="flex items-Start">
                   <div className="mt-2 space-x-4">
-                      <Link href="https://twitter.com"><Image src={twitterLogo} alt="Twitter" style={{width:"1.688rem", height:"1.35"}} /></Link>
-                      <Link href="https://github.com"><Image src={gitLogo} alt="GitHub" style={{width:"1.688rem", height:"1.35"}} /></Link>
-                      <Link href="https://telegram.org"><Image src={tgLogo} alt="Telegram" style={{width:"1.688rem", height:"1.35"}} /></Link>
-                      <Link href="https://medium.com"><Image src={mediumLogo} alt="Medium" style={{width:"1.688rem", height:"1.35"}} /></Link>
+                      <Link href="https://x.com/armorwallet"><Image src={twitterLogo} alt="Twitter" style={{width:"1.688rem", height:"1.35"}} /></Link>
+                      <Link href="https://www.reddit.com/r/ArmorWallet/"><Image src={gitLogo} alt="GitHub" style={{width:"1.688rem", height:"1.35"}} /></Link>
+                      <Link href="https://t.me/armor_wallet"><Image src={tgLogo} alt="Telegram" style={{width:"1.688rem", height:"1.35"}} /></Link>
+                      <Link href="https://medium.com/armor-wallet"><Image src={mediumLogo} alt="Medium" style={{width:"1.688rem", height:"1.35"}} /></Link>
                     </div>
                 </div>
             </div>
@@ -169,10 +169,10 @@ const Footer = () => {
                 <div className="ml-2 mt-1" style={{ fontSize: "0.75rem", lineHeight: "1.5rem", fontWeight: "550" }}>
                   <ul className="space-y-4">
                     <li style={{ display: 'inline-block', fontSize: "1.25rem", fontWeight: "550" }}> Socials</li>
-                    <li><Link href="https://twitter.com"><Image src={twitterLogo} alt="Twitter" style={{width:"1.688rem", height:"1.35"}} /></Link></li>
-                    <li><Link href="https://github.com"><Image src={gitLogo} alt="GitHub" style={{width:"1.688rem", height:"1.35"}} /></Link></li>
-                    <li><Link href="https://telegram.org"><Image src={tgLogo} alt="Telegram" style={{width:"1.688rem", height:"1.35"}} /></Link></li>
-                    <li><Link href="https://medium.com"><Image src={mediumLogo} alt="Medium" style={{width:"1.688rem", height:"1.35"}} /></Link></li>
+                    <li><Link href="https://x.com/armorwallet"><Image src={twitterLogo} alt="Twitter" style={{width:"1.688rem", height:"1.35"}} /></Link></li>
+                    <li><Link href="https://www.reddit.com/r/ArmorWallet/"><Image src={gitLogo} alt="GitHub" style={{width:"1.688rem", height:"1.35"}} /></Link></li>
+                    <li><Link href="https://t.me/armor_wallet"><Image src={tgLogo} alt="Telegram" style={{width:"1.688rem", height:"1.35"}} /></Link></li>
+                    <li><Link href="https://medium.com/armor-wallet"><Image src={mediumLogo} alt="Medium" style={{width:"1.688rem", height:"1.35"}} /></Link></li>
                   </ul>
                 </div>
               </div>

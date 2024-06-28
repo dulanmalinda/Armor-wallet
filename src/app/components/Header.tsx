@@ -48,10 +48,10 @@ const Header = () => {
         </div>
         <div className="flex-custom-1 flex justify-center items-center">
           <div className={styles.socialLinks}>
-            <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" className='button-enlarge-md'>
+            <Link href="https://x.com/armorwallet" target="_blank" rel="noopener noreferrer" className='button-enlarge-md'>
               <Image src={twitterLogo} alt="Twitter" width={18.75} height={15} />
             </Link>
-            <Link href="https://telegram.org" target="_blank" rel="noopener noreferrer" className='button-enlarge-md'>
+            <Link href="https://t.me/armor_wallet" target="_blank" rel="noopener noreferrer" className='button-enlarge-md'>
               <Image src={tgLogo} alt="Telegram" width={16.66} height={15} />
             </Link>
           </div>
@@ -79,10 +79,10 @@ const Header = () => {
                 <Link className={styles.linkAnimation}  href="https://www.armorwallet.ai/about">ABOUT</Link>
                 <Link className={styles.linkAnimation}  href="https://www.armorwallet.ai/tokenomics">TOKENOMICS</Link>
                 <div className={styles.socialLinks}>
-                    <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                    <Link href="https://x.com/armorwallet" target="_blank" rel="noopener noreferrer">
                       <Image src={twitterLogo} alt="Twitter" width={18.75} height={15} />
                     </Link>
-                    <Link href="https://telegram.org" target="_blank" rel="noopener noreferrer">
+                    <Link href="https://t.me/armor_wallet" target="_blank" rel="noopener noreferrer">
                       <Image src={tgLogo} alt="Telegram" width={16.66} height={15} />
                     </Link>
                   </div>
