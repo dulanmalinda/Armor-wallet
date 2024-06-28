@@ -28,9 +28,9 @@ const Header = () => {
           zIndex: '1000',
           fontWeight : '500'
         }} className='hideOnMobile'>
-          <p>
-            CLICK HERE TO ARMOR PRESALE
-          </p>
+          <Link href="https://airdrop.armorwallet.ai/">
+            CLICK HERE FOR ARMOR AIRDROP
+          </Link>
         </div>
 
       <div className="flex hideOnMobile" style={{height:"13.5vh"}}>

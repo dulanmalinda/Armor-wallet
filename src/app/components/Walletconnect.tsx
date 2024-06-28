@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useEffect, useState } from 'react';
-import { ConnectButton, darkTheme } from 'thirdweb/react';
+import { ConnectButton, darkTheme, AutoConnect } from 'thirdweb/react';
 import { createWallet} from "thirdweb/wallets";
 import { createThirdwebClient,defineChain } from "thirdweb";
 import { useActiveAccount } from "thirdweb/react";
@@ -224,7 +224,6 @@ const Walletconnect = ({ setWalletAddress,baseApiURL}: WalletconnectProps) => {
                   Connect your wallet
                 </span>
                 </div>
-                
                 <ConnectButton
                 connectButton={{
                   label: "Connect Wallet",
@@ -254,7 +253,7 @@ const Walletconnect = ({ setWalletAddress,baseApiURL}: WalletconnectProps) => {
 
                 onDisconnect={onDisconnected}
 
-                autoConnect = {{timeout : 20000}}
+                autoConnect = {true}
 
                 connectModal={{ 
                   size:  "compact",
