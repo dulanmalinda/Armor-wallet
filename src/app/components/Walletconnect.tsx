@@ -33,7 +33,10 @@ const Walletconnect = ({ setWalletAddress,baseApiURL}: WalletconnectProps) => {
 
   const wallets = [
     createWallet("io.metamask"),
+    createWallet("me.rainbow"),
+    createWallet("com.trustwallet.app"),
     createWallet("com.coinbase.wallet"),
+    createWallet("walletConnect"),
   ];
 
     const onConnected = (addr:string = "",chainId = 0) =>{
