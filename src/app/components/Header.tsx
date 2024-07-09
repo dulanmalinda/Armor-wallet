@@ -6,7 +6,11 @@ import twitterLogo from '../assets/header/twitter_header.svg'
 import { useState } from 'react';
 import styles from './Header.module.css';
 
-const Header = () => {
+interface HeaderProps {
+  minLogoWidth: number;
+}
+
+const Header = ({minLogoWidth}:HeaderProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -34,10 +38,46 @@ const Header = () => {
         </div>
 
       <div className="flex hideOnMobile" style={{height:"13.5vh"}}>
-        <div className="flex-custom-1 flex items-center">
-          <Image src={logo} alt="brand-logo" style={{ width: '9.194rem', height: '2.363rem'}} className='logo-left-margins'/>
+
+        <div className="flex-custom-1-2 flex items-center justify-end" style={{minWidth:minLogoWidth}}>
+          <div style={{width:"11.5rem"}}>
+            <a href='https://www.armorwallet.ai/'>
+              <Image src={logo} alt="brand-logo" style={{ width: '9.194rem', height: '2.363rem'}}/>
+            </a>
+          </div>
         </div>
-        <div className="flex-custom-1-65 flex justify-center items-center">
+
+        <div className="flex-custom-2-3 flex justify-start items-center">
+          
+          <div className="flex-shrink-0 flex flex-row items-start pl-4">
+
+            <div className="flex items-center">
+                <div className="w-5 h-5 mb-0 mr-2 cursor-pointer hideOnMobile" >
+                    
+                </div>
+                <div className="w-5 h-5 mb-0 " style={{marginRight:"0.2rem"}} >
+
+                </div>
+                {/* <span className="font-bold mx-2 sm:mx-0 sm:ml-2 text-gray-500 text-lg" style={{ width: '40px', display: 'inline-block', textAlign: 'right' }}>
+                    
+                </span> */}
+                <span className="mx-1 sm:mx-0 sm:ml-2" style={{ width: '2rem', display: 'inline-block', textAlign: 'right',color:"#7A7A7A",fontSize:"1.125rem",fontWeight:"400"}}>
+                    
+                </span>
+            </div>
+
+            <div
+            className=""
+            style={{
+                width: '2px',
+                height: `0px`,
+                backgroundColor: 'black',
+                marginTop: '0.5vh',
+                marginLeft : '0.5vw'
+            }}
+            />
+            </div>
+
           <nav className={`${styles.mainNav} ${isDropdownOpen ? styles.open : ''}`}>
             <Link className={styles.linkAnimation}  href="https://www.armorwallet.ai/concept">CONCEPT</Link>
             <Link className={styles.linkAnimation}  href="https://www.armorwallet.ai/features">FEATURES</Link>
@@ -46,7 +86,8 @@ const Header = () => {
             <Link className={styles.linkAnimation}  href="https://www.armorwallet.ai/tokenomics">TOKENOMICS</Link>
           </nav>
         </div>
-        <div className="flex-custom-1 flex justify-center items-center">
+        
+        <div className="flex-custom-1-2 flex justify-center items-center">
           <div className={styles.socialLinks}>
             <Link href="https://x.com/armorwallet" target="_blank" rel="noopener noreferrer" className='button-enlarge-md'>
               <Image src={twitterLogo} alt="Twitter" width={18.75} height={15} />

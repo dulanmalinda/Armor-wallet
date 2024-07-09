@@ -36,6 +36,8 @@ const Page = () => {
 
   const { data, loading, error } = usePolling(`${apiURL}getPrompts`, 10000);
 
+  const referenceElement = useRef<HTMLDivElement>(null);
+  const [divWidth, setDivWidth] = useState<number>(0);
   const wallets = [
     inAppWallet(),
     createWallet("io.metamask"),
@@ -117,13 +119,20 @@ const Page = () => {
     fetchPrompts();
   }
 
+  useEffect(() => {
+    if (referenceElement.current) {
+      const width = referenceElement.current.offsetWidth;
+      setDivWidth(width);
+    }
+  }, [referenceElement]);
+
   return (
     <>
     <div className="flex flex-col min-h-screen inter.variable">
-      <Header></Header>
+      <Header minLogoWidth={divWidth}></Header>
       
       <div className="flex hideOnMobile min-h-screen">
-        <div className="flex-custom-1-2 flex justify-end">
+        <div className="flex-custom-1-2 flex justify-end " ref={referenceElement}>
           <div style={{position:"absolute",top:`${btnDistanceFromTop}px`}}>
             {
               renderBtns? 
@@ -158,7 +167,7 @@ const Page = () => {
               </div>    
           </div>  
 
-        </div>
+        </div> 
         <div className="flex-custom-1-2 flex justify-start">
           <div style={{position:"absolute",top:`${btnDistanceFromTop}px`, paddingLeft:"3vw"}}>
             {
