@@ -9,9 +9,10 @@ interface WritepromptProps {
   setUserPromptCount: (newValue: number | null) => void;
   setUserVotedCount: (newValue: number) => void;
   baseApiURL:string;
+  airdropApiURL:string;
 }
 
-const Writeprompt = ({walletAddress,fetchPrompts,setUserPromptCount,setUserVotedCount,baseApiURL} : WritepromptProps) => {
+const Writeprompt = ({walletAddress,fetchPrompts,setUserPromptCount,setUserVotedCount,baseApiURL,airdropApiURL} : WritepromptProps) => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [promptSubmittedTomax, setpromptSubmittedTomax] = useState<boolean>(true);
 
@@ -130,7 +131,7 @@ const Writeprompt = ({walletAddress,fetchPrompts,setUserPromptCount,setUserVoted
         </div>
 
         <div className="items-center">
-          <Popup isOpen={showPopup} onClose={togglePopUp} walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={baseApiURL} />
+          <Popup isOpen={showPopup} onClose={togglePopUp} walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={baseApiURL} airdropApiURL={airdropApiURL} />
         </div>
       </>
       )

@@ -14,6 +14,7 @@ import { useRef, useEffect, useState } from 'react';
 import usePolling from './components/CustomHooks/usePolling';
 
 const apiURL = "https://prompt.armorwallet.ai/api/";
+const airdropApiURL = "https://airdrop.armorwallet.ai:777/v1/web-hooks/register-activity";
 
 interface Prompt {
   walletAddress: string;
@@ -172,7 +173,7 @@ const Page = () => {
           <div style={{position:"absolute",top:`${btnDistanceFromTop}px`, paddingLeft:"3vw"}}>
             {
               renderBtns?
-              <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={apiURL} setUserPromptCount={setUserSubmittedPromptCount} setUserVotedCount={setvotedCount} /> 
+              <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={apiURL} airdropApiURL={airdropApiURL} setUserPromptCount={setUserSubmittedPromptCount} setUserVotedCount={setvotedCount} /> 
               :''
             }
           </div>
@@ -185,7 +186,7 @@ const Page = () => {
 
           <Walletconnect setWalletAddress={setWalletAddress} baseApiURL={apiURL} />
           
-          <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={apiURL} setUserPromptCount={setUserSubmittedPromptCount} setUserVotedCount={setvotedCount}/>
+          <Writeprompt walletAddress={walletAddress} fetchPrompts={fetchPrompts} baseApiURL={apiURL} airdropApiURL={airdropApiURL} setUserPromptCount={setUserSubmittedPromptCount} setUserVotedCount={setvotedCount}/>
             
           <div className="">
                 <div className='w-full'>

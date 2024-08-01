@@ -11,9 +11,10 @@ interface PopupProps {
     walletAddress : string | null;
     fetchPrompts:() =>void;
     baseApiURL:string;
+    airdropApiURL:string;
   }
 
-const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL}:PopupProps) => {
+const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL,airdropApiURL}:PopupProps) => {
 
   const [promptInput, setPromptInput] = useState<string>("");
   const [upVotes, setupVotes] = useState<number>(0);
@@ -76,6 +77,22 @@ const PromptPopup = ({ isOpen, onClose,walletAddress ,fetchPrompts,baseApiURL}:P
     });
 
     const data = await res.json();
+    
+    claimAirdropPoints();
+  }
+
+  const claimAirdropPoints = async () => {
+    const res = await fetch(`${airdropApiURL}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer rNxpt64FvzyRkGsL9gmTb32wD8UcMQdV`,
+      },
+      body: JSON.stringify({ "subscriber_wallet_address":walletAddress,"campaign_slug":"armor-wallet-airdrop-2024","activity_type_slug":"submit-armor-prompt"}),
+    });
+
+    const data = await res.json(); 
+
     onClose();
     setLoading(false);
     fetchPrompts();
